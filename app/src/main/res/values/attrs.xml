@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="MaterialEditText">
+    <attr format="boolean" name="useFloatingLabel" />
+  </declare-styleable>
+
+  <declare-styleable name="CircleView">
+    <attr format="dimension" name="radius" />
+    <attr format="dimension" name="padding" />
+  </declare-styleable>
+</resources>

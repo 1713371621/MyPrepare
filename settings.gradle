@@ -1,2 +1,13 @@
+include ':lib-annotations'
+include ':lib-processor'
+include ':lib-annotation-test'
+include ':lib-reflection'
+include ':plugin'
+include ':testlibrary'
 include ':app'
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+  settingsDir,
+  'flutter_module/.android/include_flutter.groovy'
+))
 rootProject.name = "MyPrepare"
