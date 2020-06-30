@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myprepare.R
 import com.orhanobut.logger.Logger
 
-class MyRecyclerViewAdapter(private val titleList: ArrayList<String>) :
+class MyRecyclerViewAdapter(private val titleList: Array<String>) :
     RecyclerView.Adapter<MyRecyclerViewViewHolder>() {
 
     private var onItemClickListener: OnItemClickListener? = null
