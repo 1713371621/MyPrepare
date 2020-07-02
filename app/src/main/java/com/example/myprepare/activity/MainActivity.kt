@@ -26,8 +26,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        titleList = arrayOf("Rxjava2")
-        activityMap = mapOf(Pair("Rxjava2", Intent(this, Rxjava2Activity::class.java)))
+        titleList = arrayOf(
+            "Rxjava2",
+            "ViewSize"
+        )
+        activityMap = mapOf(
+            Pair("Rxjava2", Intent(this, Rxjava2Activity::class.java)),
+            Pair("ViewSize", Intent(this, ViewSizeActivity::class.java))
+        )
 
         myAdapter = MyRecyclerViewAdapter(titleList)
         myAdapter.setOnItemClickListener(object : MyRecyclerViewAdapter.OnItemClickListener {
