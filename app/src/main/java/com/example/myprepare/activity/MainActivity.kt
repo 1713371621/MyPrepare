@@ -1,6 +1,5 @@
 package com.example.myprepare.activity
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -29,12 +28,22 @@ class MainActivity : AppCompatActivity() {
         titleList = arrayOf(
             "Rxjava2",
             "ViewSize",
-            "EditTextView"
+            "EditTextView",
+            "DrawerLayoutTest",
+            "ResTest",
+            "RecyclerTest",
+            "FragmentTest",
+            "ServiceTest"
         )
         activityMap = mapOf(
             Pair("Rxjava2", Intent(this, Rxjava2Activity::class.java)),
             Pair("ViewSize", Intent(this, ViewSizeActivity::class.java)),
-            Pair("EditTextView", Intent(this, EditTextActivity::class.java))
+            Pair("EditTextView", Intent(this, EditTextActivity::class.java)),
+            Pair("DrawerLayoutTest", Intent(this, DrawerLayoutActivity::class.java)),
+            Pair("ResTest", Intent(this, ResTestActivity::class.java)),
+            Pair("RecyclerTest", Intent(this, RecyclerTestActivity::class.java)),
+            Pair("FragmentTest", Intent(this, FragmentTestActivity::class.java)),
+            Pair("ServiceTest", Intent(this, ServiceTestActivity::class.java))
         )
 
         myAdapter = MyRecyclerViewAdapter(titleList)
