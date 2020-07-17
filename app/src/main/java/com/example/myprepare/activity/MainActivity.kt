@@ -28,11 +28,13 @@ class MainActivity : AppCompatActivity() {
     private fun initData() {
         titleList = arrayOf(
             "Rxjava2",
-            "ViewSize"
+            "ViewSize",
+            "EditTextView"
         )
         activityMap = mapOf(
             Pair("Rxjava2", Intent(this, Rxjava2Activity::class.java)),
-            Pair("ViewSize", Intent(this, ViewSizeActivity::class.java))
+            Pair("ViewSize", Intent(this, ViewSizeActivity::class.java)),
+            Pair("EditTextView", Intent(this, EditTextActivity::class.java))
         )
 
         myAdapter = MyRecyclerViewAdapter(titleList)
