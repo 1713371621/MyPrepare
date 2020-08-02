@@ -1,8 +1,9 @@
 package com.example.myprepare.activity
 
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var activityMap: Map<String, Intent>
     private lateinit var titleList: Array<String>
     private lateinit var myAdapter: MyRecyclerViewAdapter
+
+    private class RouterDetail(title: String, activityClass: Class<out Activity>) {
+
+    }
+
+    private val routeDetailList: MutableList<RouterDetail> = mutableListOf(
+        RouterDetail("Rxjava2",Rxjava2Activity::class.java),
+        RouterDetail("ViewSize",ViewSizeActivity::class.java)
+
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +71,12 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
         my_recycler_view.adapter = myAdapter
         my_recycler_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        my_recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        my_recycler_view.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
+        )
         my_recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             private var scrollY: Int = 0
 
