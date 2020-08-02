@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myprepare.R
+import com.example.myprepare.activity.MainActivity
+import com.example.myprepare.module.RouterDetail
 import com.orhanobut.logger.Logger
 
-class MyRecyclerViewAdapter(private val titleList: Array<String>) :
+class MyRecyclerViewAdapter(private val routerDetailList: MutableList<RouterDetail>) :
     RecyclerView.Adapter<MyRecyclerViewViewHolder>() {
 
     private var onItemClickListener: OnItemClickListener? = null
@@ -18,11 +20,11 @@ class MyRecyclerViewAdapter(private val titleList: Array<String>) :
     }
 
     override fun getItemCount(): Int {
-        return titleList.size
+        return routerDetailList.size
     }
 
     override fun onBindViewHolder(holder: MyRecyclerViewViewHolder, position: Int) {
-        val title: String = titleList[position]
+        val title: String = routerDetailList[position].title
         holder.mainTitle.text = title
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(title, position)

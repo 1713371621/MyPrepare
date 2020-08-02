@@ -1,6 +1,5 @@
 package com.example.myprepare.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,23 +7,23 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myprepare.R
+import com.example.myprepare.module.RouterDetail
 import com.example.myprepare.recyclerview.MyRecyclerViewAdapter
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var activityMap: Map<String, Intent>
-    private lateinit var titleList: Array<String>
     private lateinit var myAdapter: MyRecyclerViewAdapter
-
-    private class RouterDetail(title: String, activityClass: Class<out Activity>) {
-
-    }
 
     private val routeDetailList: MutableList<RouterDetail> = mutableListOf(
         RouterDetail("Rxjava2",Rxjava2Activity::class.java),
-        RouterDetail("ViewSize",ViewSizeActivity::class.java)
-
+        RouterDetail("ViewSize",ViewSizeActivity::class.java),
+        RouterDetail("EditTextView",EditTextActivity::class.java),
+        RouterDetail("DrawerLayoutTest",DrawerLayoutActivity::class.java),
+        RouterDetail("ResTest",ResTestActivity::class.java),
+        RouterDetail("RecyclerTest",RecyclerTestActivity::class.java),
+        RouterDetail("FragmentTest",FragmentTestActivity::class.java),
+        RouterDetail("ServiceTest",ServiceTestActivity::class.java)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,34 +35,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        titleList = arrayOf(
-            "Rxjava2",
-            "ViewSize",
-            "EditTextView",
-            "DrawerLayoutTest",
-            "ResTest",
-            "RecyclerTest",
-            "FragmentTest",
-            "ServiceTest"
-        )
-        activityMap = mapOf(
-            Pair("Rxjava2", Intent(this, Rxjava2Activity::class.java)),
-            Pair("ViewSize", Intent(this, ViewSizeActivity::class.java)),
-            Pair("EditTextView", Intent(this, EditTextActivity::class.java)),
-            Pair("DrawerLayoutTest", Intent(this, DrawerLayoutActivity::class.java)),
-            Pair("ResTest", Intent(this, ResTestActivity::class.java)),
-            Pair("RecyclerTest", Intent(this, RecyclerTestActivity::class.java)),
-            Pair("FragmentTest", Intent(this, FragmentTestActivity::class.java)),
-            Pair("ServiceTest", Intent(this, ServiceTestActivity::class.java))
-        )
 
-        myAdapter = MyRecyclerViewAdapter(titleList)
+        myAdapter = MyRecyclerViewAdapter(routeDetailList)
         myAdapter.setOnItemClickListener(object : MyRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(title: String, position: Int) {
                 Logger.d("position: $position, title: $title")
-                if (activityMap.containsKey(title)) {
-                    startActivity(activityMap[title])
-                }
+                startActivity(Intent(this@MainActivity, routeDetailList[position].activityClass))
             }
         })
     }

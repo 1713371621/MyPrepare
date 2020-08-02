@@ -1,4 +1,4 @@
-# flutter_module_test
+# flutter_module
 
 A new Flutter module.
 
