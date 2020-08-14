@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="DefActivityAnimation">
         <item name="android:activityOpenExitAnimation">@anim/exit_to_left</item>
         <item name="android:activityOpenEnterAnimation">@anim/enter_from_right_to_left</item>
