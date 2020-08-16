@@ -16,14 +16,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var myAdapter: MyRecyclerViewAdapter
 
     private val routeDetailList: MutableList<RouterDetail> = mutableListOf(
-        RouterDetail("Rxjava2",Rxjava2Activity::class.java),
-        RouterDetail("ViewSize",ViewSizeActivity::class.java),
-        RouterDetail("EditTextView",EditTextActivity::class.java),
-        RouterDetail("DrawerLayoutTest",DrawerLayoutActivity::class.java),
-        RouterDetail("ResTest",ResTestActivity::class.java),
-        RouterDetail("RecyclerTest",RecyclerTestActivity::class.java),
-        RouterDetail("FragmentTest",FragmentTestActivity::class.java),
-        RouterDetail("ServiceTest",ServiceTestActivity::class.java)
+        RouterDetail("Rxjava2", Rxjava2Activity::class.java),
+        RouterDetail("ViewSize", ViewSizeActivity::class.java),
+        RouterDetail("EditTextView", EditTextActivity::class.java),
+        RouterDetail("DrawerLayoutTest", DrawerLayoutActivity::class.java),
+        RouterDetail("ResTest", ResTestActivity::class.java),
+        RouterDetail("RecyclerTest", RecyclerTestActivity::class.java),
+        RouterDetail("FragmentTest", FragmentTestActivity::class.java),
+        RouterDetail("ServiceTest", ServiceTestActivity::class.java)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
+                Logger.d("recyclerView = $recyclerView, newState = $newState")
             }
         })
     }
