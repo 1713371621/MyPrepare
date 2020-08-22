@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity.RetrofitActivity"></activity>
         <activity android:name=".activity.ServiceTestActivity" />
         <activity android:name=".activity.FragmentTestActivity" />
         <activity android:name=".activity.RecyclerTestActivity" />
@@ -21,7 +22,8 @@
         <activity
             android:name=".activity.Rxjava2Activity"
             android:launchMode="singleTask" />
-        <activity android:name=".activity.MainActivity"
+        <activity
+            android:name=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
