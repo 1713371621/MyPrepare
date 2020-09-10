@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface GetRequestInterface {
 
     @GET(value = "v1/surrogate/users/login")
-    fun loginInWithPassword(): Call<Response>
+    fun loginInWithPassword(): Call<SurrogateResponse>
 }
