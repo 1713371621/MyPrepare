@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        if (missingPermissionList.size != 0) {
+        if (missingPermissionList.isNotEmpty()) {
             ActivityCompat.requestPermissions(this, PERMISSION, REQUEST_CODE)
         }
     }

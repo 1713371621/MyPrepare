@@ -7,5 +7,5 @@ import retrofit2.http.GET
 interface RetrofitRequestService {
 
     @GET("users/1713371621/repos")
-    fun getRepos(): Call<ResponseBody>
+    fun getRepos(): Call<List<Repo>>
 }

@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.myprepare.R
+import com.example.myprepare.retrofit.Repo
 import com.example.myprepare.retrofit.RetrofitRequestService
 import com.example.myprepare.retrofit.RetrofitHelper
+import com.google.gson.Gson
 import com.orhanobut.logger.Logger
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -25,14 +27,17 @@ class RetrofitActivity : AppCompatActivity() {
             RetrofitHelper.createRetrofit("https://api.github.com/")
                 .create(RetrofitRequestService::class.java)
 
-        // enqueue异步 execute同步
-        retrofitRequestService.getRepos().enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                Log.d(TAG, "onResponse: responseBody = ${response.body()?.string()}")
+        val gson = Gson()
+        // enqueue: 异步 execute: 同步
+        retrofitRequestService.getRepos().enqueue(object : Callback<List<Repo>> {
+
+            override fun onResponse(call: Call<List<Repo>>, response: Response<List<Repo>>) {
+                Logger.d(gson.toJson(response.body()))
             }
 
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.d(TAG, "onFailure: ${t.message}")
+            override fun onFailure(call: Call<List<Repo>>, t: Throwable) {
+                t.printStackTrace()
+                Logger.e("")
             }
 
         })
