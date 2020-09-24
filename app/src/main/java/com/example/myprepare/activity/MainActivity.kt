@@ -82,7 +82,8 @@ class MainActivity : AppCompatActivity() {
         RouterDetail("RecyclerTest", RecyclerTestActivity::class.java),
         RouterDetail("FragmentTest", FragmentTestActivity::class.java),
         RouterDetail("ServiceTest", ServiceTestActivity::class.java),
-        RouterDetail("Retrofit", RetrofitActivity::class.java)
+        RouterDetail("Retrofit", RetrofitActivity::class.java),
+        RouterDetail("OkHttp", OkHttpActivity::class.java)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
