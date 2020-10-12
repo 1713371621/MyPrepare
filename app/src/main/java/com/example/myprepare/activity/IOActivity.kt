@@ -1,13 +1,20 @@
 package com.example.myprepare.activity
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.RequiresApi
+import androidx.core.util.Consumer
 import com.example.myprepare.R
 import java.io.*
 import java.lang.Exception
+import java.net.InetSocketAddress
 import java.net.ServerSocket
 import java.net.Socket
+import java.nio.ByteBuffer
+import java.nio.channels.*
+import java.nio.charset.Charset
 
 class IOActivity : AppCompatActivity() {
 
@@ -22,7 +29,9 @@ class IOActivity : AppCompatActivity() {
 //        io1()
 //        io2()
 //        io3()
-        io4()
+//        io4()
+//        nio1()
+        nio2()
     }
 
     fun io1() {
@@ -120,19 +129,21 @@ class IOActivity : AppCompatActivity() {
                 writer = BufferedWriter(java.io.OutputStreamWriter(socket.getOutputStream()))
                 reader = BufferedReader(InputStreamReader(socket.getInputStream()))
 
-                writer.write("HTTP/1.1 200 OK\n" +
-                        "Date: Sat, 31 Dec 2005 23:59:59 GMT\n" +
-                        "Content-Type: text/html;charset=UTF-8\n" +
-                        "Content-Length: 122\n" +
-                        "\n" +
-                        "＜html＞\n" +
-                        "＜head＞\n" +
-                        "＜title＞Wrox Homepage＜/title＞\n" +
-                        "＜/head＞\n" +
-                        "＜body＞\n" +
-                        "＜!-- body goes here --＞\n" +
-                        "＜/body＞\n" +
-                        "＜/html＞\n\n")
+                writer.write(
+                    "HTTP/1.1 200 OK\n" +
+                            "Date: Sat, 31 Dec 2005 23:59:59 GMT\n" +
+                            "Content-Type: text/html;charset=UTF-8\n" +
+                            "Content-Length: 122\n" +
+                            "\n" +
+                            "＜html＞\n" +
+                            "＜head＞\n" +
+                            "＜title＞Wrox Homepage＜/title＞\n" +
+                            "＜/head＞\n" +
+                            "＜body＞\n" +
+                            "＜!-- body goes here --＞\n" +
+                            "＜/body＞\n" +
+                            "＜/html＞\n\n"
+                )
                 writer.flush()
             } catch (exception: Exception) {
                 exception.printStackTrace()
@@ -147,5 +158,71 @@ class IOActivity : AppCompatActivity() {
                 }
             }
         }.start()
+    }
+
+    fun nio1() {
+        var randomAccessFile: RandomAccessFile? = null
+        var fileChannel: FileChannel? = null
+        try {
+            randomAccessFile = RandomAccessFile("/sdcard/trace.txt", "r")
+            fileChannel = randomAccessFile.channel
+            val byteBuffer: ByteBuffer = ByteBuffer.allocate(2048)
+            var read: Int
+            while (fileChannel.read(byteBuffer).also { read = it } != -1) {
+                byteBuffer.flip()
+                Log.d(TAG, "nio: ${Charset.defaultCharset().decode(byteBuffer)}")
+                byteBuffer.clear()
+            }
+        } catch (exception: IOException) {
+            exception.printStackTrace()
+        } finally {
+            try {
+                randomAccessFile?.close()
+                fileChannel?.close()
+            } catch (exception: Exception) {
+                exception.printStackTrace()
+            }
+        }
+    }
+
+    fun nio2() {
+        var serverSocketChannel: ServerSocketChannel? = null
+        var selector: Selector? = null
+        var serverSocket: ServerSocket? = null
+        try {
+            serverSocketChannel = ServerSocketChannel.open()
+            serverSocket = serverSocketChannel.socket()
+            serverSocket.bind(InetSocketAddress("172.0.0.1",8080))
+//            serverSocketChannel.bind(InetSocketAddress("172.0.0.1",8080))
+            serverSocketChannel.configureBlocking(false)
+
+            selector = Selector.open()
+            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT)
+            while (true) {
+                selector.select()
+                selector.selectedKeys().forEach {
+                    if (it.isAcceptable) {
+                        val socketChannel: SocketChannel = serverSocketChannel.accept()
+                        val byteBuffer = ByteBuffer.allocate(2048)
+                        while (socketChannel.read(byteBuffer) != -1) {
+                            byteBuffer.flip()
+                            socketChannel.write(byteBuffer)
+                            byteBuffer.clear()
+                        }
+                    }
+                }
+            }
+
+
+        } catch (exception: IOException) {
+            exception.printStackTrace()
+        } finally {
+            try {
+                serverSocketChannel?.close()
+                selector?.close()
+            } catch (exception: Exception) {
+                exception.printStackTrace()
+            }
+        }
     }
 }
