@@ -86,8 +86,8 @@ class MainActivity : AppCompatActivity() {
         RouterDetail("OkHttp", OkHttpActivity::class.java),
         RouterDetail("View", ViewActivity::class.java),
         RouterDetail("View2", ViewActivity2::class.java),
-        RouterDetail("ThreadTest", ThreadTestActivity::class.java)
-
+        RouterDetail("ThreadTest", ThreadTestActivity::class.java),
+        RouterDetail("IOTest", IOActivity::class.java)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
