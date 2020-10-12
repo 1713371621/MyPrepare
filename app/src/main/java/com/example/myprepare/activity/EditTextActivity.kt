@@ -1,10 +1,10 @@
 package com.example.myprepare.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myprepare.R
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_edit_text.*

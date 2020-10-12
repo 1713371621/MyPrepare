@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myprepare.R
-import com.example.myprepare.activity.MainActivity
 import com.example.myprepare.module.RouterDetail
-import com.orhanobut.logger.Logger
 
 class MyRecyclerViewAdapter(private val routerDetailList: MutableList<RouterDetail>) :
     RecyclerView.Adapter<MyRecyclerViewViewHolder>() {

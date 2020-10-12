@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val routeDetailList: MutableList<RouterDetail> = mutableListOf(
-        RouterDetail("Rxjava2", Rxjava2Activity::class.java),
+        RouterDetail("RxJava3", RxJava3Activity::class.java),
         RouterDetail("ViewSize", ViewSizeActivity::class.java),
         RouterDetail("EditTextView", EditTextActivity::class.java),
         RouterDetail("DrawerLayoutTest", DrawerLayoutActivity::class.java),

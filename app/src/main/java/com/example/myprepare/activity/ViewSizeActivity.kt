@@ -6,7 +6,6 @@ import android.text.Html
 import android.text.Html.FROM_HTML_MODE_LEGACY
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
 import com.example.myprepare.R
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_view_size.*

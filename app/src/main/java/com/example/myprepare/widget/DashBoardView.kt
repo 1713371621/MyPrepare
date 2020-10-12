@@ -6,8 +6,6 @@ import android.util.AttributeSet
 import android.view.View
 import com.example.myprepare.Utils
 import com.orhanobut.logger.Logger
-import kotlin.math.cos
-import kotlin.math.sin
 
 class DashBoardView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
