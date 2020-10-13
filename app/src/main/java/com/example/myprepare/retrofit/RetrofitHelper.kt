@@ -7,13 +7,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitHelper {
 
-    private val gson = Gson()
+  private val gson = Gson()
 
-    fun createRetrofit(baseUrl: String): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-            .build()
-    }
+  fun createRetrofit(baseUrl: String): Retrofit {
+    return Retrofit.Builder()
+        .baseUrl(baseUrl)
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+        .build()
+  }
 }

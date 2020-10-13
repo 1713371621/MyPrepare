@@ -17,122 +17,124 @@ import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var myAdapter: MyRecyclerViewAdapter
 
-    companion object {
-        private const val REQUEST_CODE = 1
+  private lateinit var myAdapter: MyRecyclerViewAdapter
 
-        private val PERMISSION: Array<String> = arrayOf(
-            Manifest.permission.INTERNET,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.CAMERA,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        )
-    }
+  companion object {
 
-    private val missingPermissionList: MutableList<String> = ArrayList()
+    private const val REQUEST_CODE = 1
 
-    private fun checkPermission() {
-        PERMISSION.forEach {
-            ContextCompat.checkSelfPermission(this, it)
-            if (ContextCompat.checkSelfPermission(this, it) != PERMISSION_GRANTED) {
-                Logger.d("missing permission = $it")
-                missingPermissionList.add(it)
-            } else {
-                Logger.d("checkPermission: has permission $it")
-            }
-        }
-
-        if (missingPermissionList.isNotEmpty()) {
-            ActivityCompat.requestPermissions(this, PERMISSION, REQUEST_CODE)
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        Logger.d("requestCode = $requestCode")
-        Logger.d("permission")
-        Logger.d(permissions)
-        Logger.d("grantResults")
-        Logger.d(grantResults)
-
-        if (requestCode == REQUEST_CODE) {
-            for (i in permissions.indices) {
-                if (grantResults[i] == PERMISSION_GRANTED) {
-                    missingPermissionList.remove(permissions[i])
-                }
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        checkPermission()
-    }
-
-    private val routeDetailList: MutableList<RouterDetail> = mutableListOf(
-        RouterDetail("RxJava3", RxJava3Activity::class.java),
-        RouterDetail("ViewSize", ViewSizeActivity::class.java),
-        RouterDetail("EditTextView", EditTextActivity::class.java),
-        RouterDetail("DrawerLayoutTest", DrawerLayoutActivity::class.java),
-        RouterDetail("ResTest", ResTestActivity::class.java),
-        RouterDetail("RecyclerTest", RecyclerTestActivity::class.java),
-        RouterDetail("FragmentTest", FragmentTestActivity::class.java),
-        RouterDetail("ServiceTest", ServiceTestActivity::class.java),
-        RouterDetail("Retrofit", RetrofitActivity::class.java),
-        RouterDetail("OkHttp", OkHttpActivity::class.java),
-        RouterDetail("View", ViewActivity::class.java),
-        RouterDetail("View2", ViewActivity2::class.java),
-        RouterDetail("ThreadTest", ThreadTestActivity::class.java),
-        RouterDetail("IOTest", IOActivity::class.java)
+    private val PERMISSION: Array<String> = arrayOf(
+        Manifest.permission.INTERNET,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.CAMERA,
+        Manifest.permission.READ_EXTERNAL_STORAGE
     )
+  }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        checkPermission()
-        Logger.d("start")
-        initData()
-        initView()
+  private val missingPermissionList: MutableList<String> = ArrayList()
+
+  private fun checkPermission() {
+    PERMISSION.forEach {
+      ContextCompat.checkSelfPermission(this, it)
+      if (ContextCompat.checkSelfPermission(this, it) != PERMISSION_GRANTED) {
+        Logger.d("missing permission = $it")
+        missingPermissionList.add(it)
+      } else {
+        Logger.d("checkPermission: has permission $it")
+      }
     }
 
-    private fun initData() {
-
-        myAdapter = MyRecyclerViewAdapter(routeDetailList)
-        myAdapter.setOnItemClickListener(object : MyRecyclerViewAdapter.OnItemClickListener {
-            override fun onItemClick(title: String, position: Int) {
-                Logger.d("position: $position, title: $title")
-                startActivity(Intent(this@MainActivity, routeDetailList[position].activityClass))
-            }
-        })
+    if (missingPermissionList.isNotEmpty()) {
+      ActivityCompat.requestPermissions(this, PERMISSION, REQUEST_CODE)
     }
+  }
 
-    private fun initView() {
-        my_recycler_view.adapter = myAdapter
-        my_recycler_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        my_recycler_view.addItemDecoration(
-            DividerItemDecoration(
-                this,
-                DividerItemDecoration.VERTICAL
-            )
+  override fun onRequestPermissionsResult(
+      requestCode: Int,
+      permissions: Array<out String>,
+      grantResults: IntArray
+  ) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    Logger.d("requestCode = $requestCode")
+    Logger.d("permission")
+    Logger.d(permissions)
+    Logger.d("grantResults")
+    Logger.d(grantResults)
+
+    if (requestCode == REQUEST_CODE) {
+      for (i in permissions.indices) {
+        if (grantResults[i] == PERMISSION_GRANTED) {
+          missingPermissionList.remove(permissions[i])
+        }
+      }
+    }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    checkPermission()
+  }
+
+  private val routeDetailList: MutableList<RouterDetail> = mutableListOf(
+      RouterDetail("RxJava3", RxJava3Activity::class.java),
+      RouterDetail("ViewSize", ViewSizeActivity::class.java),
+      RouterDetail("EditTextView", EditTextActivity::class.java),
+      RouterDetail("DrawerLayoutTest", DrawerLayoutActivity::class.java),
+      RouterDetail("ResTest", ResTestActivity::class.java),
+      RouterDetail("RecyclerTest", RecyclerTestActivity::class.java),
+      RouterDetail("FragmentTest", FragmentTestActivity::class.java),
+      RouterDetail("ServiceTest", ServiceTestActivity::class.java),
+      RouterDetail("Retrofit", RetrofitActivity::class.java),
+      RouterDetail("OkHttp", OkHttpActivity::class.java),
+      RouterDetail("View", ViewActivity::class.java),
+      RouterDetail("View2", ViewActivity2::class.java),
+      RouterDetail("ThreadTest", ThreadTestActivity::class.java),
+      RouterDetail("IOTest", IOActivity::class.java)
+  )
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+    checkPermission()
+    Logger.d("start")
+    initData()
+    initView()
+  }
+
+  private fun initData() {
+
+    myAdapter = MyRecyclerViewAdapter(routeDetailList)
+    myAdapter.setOnItemClickListener(object : MyRecyclerViewAdapter.OnItemClickListener {
+      override fun onItemClick(title: String, position: Int) {
+        Logger.d("position: $position, title: $title")
+        startActivity(Intent(this@MainActivity, routeDetailList[position].activityClass))
+      }
+    })
+  }
+
+  private fun initView() {
+    my_recycler_view.adapter = myAdapter
+    my_recycler_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+    my_recycler_view.addItemDecoration(
+        DividerItemDecoration(
+            this,
+            DividerItemDecoration.VERTICAL
         )
-        my_recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            private var scrollY: Int = 0
+    )
+    my_recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+      private var scrollY: Int = 0
 
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                scrollY += dy
-                Logger.d("onScrolled: dy = $dy, scrollY = $scrollY")
-            }
+      override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+        super.onScrolled(recyclerView, dx, dy)
+        scrollY += dy
+        Logger.d("onScrolled: dy = $dy, scrollY = $scrollY")
+      }
 
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                Logger.d("recyclerView = $recyclerView, newState = $newState")
-            }
-        })
-    }
+      override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        super.onScrollStateChanged(recyclerView, newState)
+        Logger.d("recyclerView = $recyclerView, newState = $newState")
+      }
+    })
+  }
 }

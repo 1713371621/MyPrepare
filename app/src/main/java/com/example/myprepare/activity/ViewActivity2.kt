@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.myprepare.R
 
 class ViewActivity2 : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_view2)
-    }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_view2)
+  }
 }

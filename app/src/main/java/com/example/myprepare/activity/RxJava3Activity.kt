@@ -16,15 +16,16 @@ import java.util.concurrent.TimeUnit
 
 class RxJava3Activity : AppCompatActivity() {
 
-    companion object {
-        private const val TAG = "RxJava3Activity"
-    }
+  companion object {
 
-    private var subscription: Subscription? = null
+    private const val TAG = "RxJava3Activity"
+  }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_rxjava3)
+  private var subscription: Subscription? = null
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_rxjava3)
 
 //         拆一下
 //        val single: Single<Int> = Single.just(1)
@@ -69,56 +70,56 @@ class RxJava3Activity : AppCompatActivity() {
 //
 //            })
 
-        Flowable.create(object : FlowableOnSubscribe<Int> {
-            override fun subscribe(emitter: FlowableEmitter<Int>?) {
-                Log.d(TAG, "subscribe: first requested = ${emitter?.requested()}")
-                var flag: Boolean
-                for (i: Int in 0 until 30) {
-                    flag = false
-                    while (emitter?.requested() ?: -1 == 0L) {
-                        if (!flag) {
-                            Log.d(TAG, "subscribe: can not emit value")
-                            flag = true
-                        }
-                    }
-                    emitter?.onNext(i)
-                    Log.d(TAG, "subscribe: emit $i, requested = ${emitter?.requested()}")
-                }
-                emitter?.onComplete()
+    Flowable.create(object : FlowableOnSubscribe<Int> {
+      override fun subscribe(emitter: FlowableEmitter<Int>?) {
+        Log.d(TAG, "subscribe: first requested = ${emitter?.requested()}")
+        var flag: Boolean
+        for (i: Int in 0 until 30) {
+          flag = false
+          while (emitter?.requested() ?: -1 == 0L) {
+            if (!flag) {
+              Log.d(TAG, "subscribe: can not emit value")
+              flag = true
             }
+          }
+          emitter?.onNext(i)
+          Log.d(TAG, "subscribe: emit $i, requested = ${emitter?.requested()}")
+        }
+        emitter?.onComplete()
+      }
 
-        }, BackpressureStrategy.ERROR)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .delay(2000, TimeUnit.MILLISECONDS)
-            .subscribe(object : Subscriber<Int> {
-                override fun onSubscribe(s: Subscription?) {
-                    Log.d(TAG, "onSubscribe: ")
-                    subscription = s
-                    subscription?.request(2)
-                }
+    }, BackpressureStrategy.ERROR)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .delay(2000, TimeUnit.MILLISECONDS)
+        .subscribe(object : Subscriber<Int> {
+          override fun onSubscribe(s: Subscription?) {
+            Log.d(TAG, "onSubscribe: ")
+            subscription = s
+            subscription?.request(2)
+          }
 
-                override fun onNext(t: Int?) {
-                    Log.d(TAG, "onNext: $t")
-                    subscription?.request(1)
-                    subscription?.request(1)
-                }
+          override fun onNext(t: Int?) {
+            Log.d(TAG, "onNext: $t")
+            subscription?.request(1)
+            subscription?.request(1)
+          }
 
-                override fun onError(t: Throwable?) {
-                    t?.printStackTrace()
-                }
+          override fun onError(t: Throwable?) {
+            t?.printStackTrace()
+          }
 
-                override fun onComplete() {
-                    Log.d(TAG, "onComplete: ")
-                    subscription?.cancel()
-                }
+          override fun onComplete() {
+            Log.d(TAG, "onComplete: ")
+            subscription?.cancel()
+          }
 
-            })
-        Log.d(TAG, "onCreate: end!")
-    }
+        })
+    Log.d(TAG, "onCreate: end!")
+  }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        subscription?.cancel()
-    }
+  override fun onDestroy() {
+    super.onDestroy()
+    subscription?.cancel()
+  }
 }

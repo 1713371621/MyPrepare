@@ -14,21 +14,24 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class RetrofitActivity : AppCompatActivity() {
-    var disposable: Disposable? = null
-    companion object {
-        private const val TAG = "RetrofitActivity"
-    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_retrofit)
+  var disposable: Disposable? = null
 
-        val retrofitRequestService: RetrofitRequestService =
-            RetrofitHelper.createRetrofit("https://api.github.com/")
-                .create(RetrofitRequestService::class.java)
+  companion object {
 
-        val gson = Gson()
-        // enqueue: 异步 execute: 同步
+    private const val TAG = "RetrofitActivity"
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_retrofit)
+
+    val retrofitRequestService: RetrofitRequestService =
+        RetrofitHelper.createRetrofit("https://api.github.com/")
+            .create(RetrofitRequestService::class.java)
+
+    val gson = Gson()
+    // enqueue: 异步 execute: 同步
 //        retrofitRequestService.getRepos("1713371621").enqueue(object : Callback<List<Repo>> {
 //
 //            override fun onResponse(call: Call<List<Repo>>, response: Response<List<Repo>>) {
@@ -41,28 +44,28 @@ class RetrofitActivity : AppCompatActivity() {
 //            }
 //        })
 
-        retrofitRequestService.getReposRx("1713371621")
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<MutableList<Repo>> {
-                override fun onSubscribe(d: Disposable?) {
-                    disposable = d
-                    Logger.d("正在请求")
-                }
+    retrofitRequestService.getReposRx("1713371621")
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(object : SingleObserver<MutableList<Repo>> {
+          override fun onSubscribe(d: Disposable?) {
+            disposable = d
+            Logger.d("正在请求")
+          }
 
-                override fun onSuccess(t: MutableList<Repo>?) {
-                    Logger.d(t)
-                }
+          override fun onSuccess(t: MutableList<Repo>?) {
+            Logger.d(t)
+          }
 
-                override fun onError(e: Throwable?) {
-                    Logger.e(e, "error")
-                }
+          override fun onError(e: Throwable?) {
+            Logger.e(e, "error")
+          }
 
-            })
-    }
+        })
+  }
 
-    override fun onDestroy() {
-        disposable?.dispose()
-        super.onDestroy()
-    }
+  override fun onDestroy() {
+    disposable?.dispose()
+    super.onDestroy()
+  }
 }
