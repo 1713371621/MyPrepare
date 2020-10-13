@@ -197,8 +197,8 @@ class IOActivity : AppCompatActivity() {
       serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT)
       while (true) {
         selector.select()
-        selector.selectedKeys().forEach {
-          if (it.isAcceptable) {
+        for (selectedKey in selector.selectedKeys()) {
+          if (selectedKey.isAcceptable) {
             val socketChannel: SocketChannel = serverSocketChannel.accept()
             val byteBuffer = ByteBuffer.allocate(2048)
             while (socketChannel.read(byteBuffer) != -1) {

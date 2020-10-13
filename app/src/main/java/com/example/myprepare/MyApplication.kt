@@ -1,12 +1,28 @@
 package com.example.myprepare
 
 import android.app.Application
+import android.content.Context
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
 
 class MyApplication : Application() {
+
+  companion object {
+
+    private lateinit var currentApplication: Context
+
+    @JvmStatic
+    fun currentApplication(): Context {
+      return currentApplication
+    }
+  }
+
+  override fun attachBaseContext(base: Context?) {
+    super.attachBaseContext(base)
+    currentApplication = this
+  }
 
   override fun onCreate() {
     super.onCreate()

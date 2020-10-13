@@ -17,4 +17,7 @@ class User {
       Log.d(TAG, "value: $value")
       field = value
     }
+
+  @JvmField
+  var phoneNumber: String? = null
 }
