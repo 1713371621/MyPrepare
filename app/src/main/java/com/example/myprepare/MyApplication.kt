@@ -11,13 +11,13 @@ class MyApplication : Application() {
 
   companion object {
 
-    private lateinit var currentApplication: Context
-
+    // 注解均为java程序使用
     @JvmStatic
-    fun currentApplication(): Context {
-      return currentApplication
-    }
+    @get:JvmName("currentApplication")
+    lateinit var currentApplication: Context
+      private set
   }
+
 
   override fun attachBaseContext(base: Context?) {
     super.attachBaseContext(base)

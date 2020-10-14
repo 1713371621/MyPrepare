@@ -7,13 +7,15 @@ import android.widget.Toast
 object Utils {
 
   @JvmStatic
-  fun dp2px(dp: Float): Float {
+  fun Float.dp2px(): Float {
     return TypedValue.applyDimension(
-        TypedValue.COMPLEX_UNIT_DIP, dp, Resources.getSystem().displayMetrics
+        TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics
     )
   }
 
-  fun toast(string: String) {
-    Toast.makeText(MyApplication.currentApplication(), "", Toast.LENGTH_SHORT).show()
+  // java代码使用重载, 需要添加如下注解
+  @JvmOverloads
+  fun toast(string: String, showToast: Int = Toast.LENGTH_LONG) {
+    Toast.makeText(MyApplication.currentApplication, "", showToast).show()
   }
 }

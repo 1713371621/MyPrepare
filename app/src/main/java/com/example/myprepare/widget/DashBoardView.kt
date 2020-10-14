@@ -5,6 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import com.example.myprepare.Utils
+import com.example.myprepare.Utils.dp2px
 import com.orhanobut.logger.Logger
 
 class DashBoardView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
@@ -12,8 +13,8 @@ class DashBoardView(context: Context?, attrs: AttributeSet?) : View(context, att
   companion object {
 
     private const val ANGLE = 120
-    private val RADIUS: Float = Utils.dp2px(150f)
-    private val LENGTH: Float = Utils.dp2px(100f)
+    private val RADIUS: Float = 150f.dp2px()
+    private val LENGTH: Float = 100f.dp2px()
   }
 
   private val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -26,9 +27,9 @@ class DashBoardView(context: Context?, attrs: AttributeSet?) : View(context, att
 
   init {
     paint.style = Paint.Style.STROKE
-    paint.strokeWidth = Utils.dp2px(2f)
+    paint.strokeWidth = 2f.dp2px()
 
-    dash.addRect(0f, 0f, Utils.dp2px(2f), Utils.dp2px(6f), Path.Direction.CW)
+    dash.addRect(0f, 0f, 2f.dp2px(), 6f.dp2px(), Path.Direction.CW)
     val pathArc = Path()
     pathArc.addArc(
         (width / 2) - RADIUS, (height / 2) - RADIUS,
@@ -38,7 +39,7 @@ class DashBoardView(context: Context?, attrs: AttributeSet?) : View(context, att
     pathMeasure = PathMeasure(pathArc, false)
     pathDashPathEffect = PathDashPathEffect(
         dash,
-        (pathMeasure.length - Utils.dp2px(2f)) / 20,
+        (pathMeasure.length - 2f.dp2px()) / 20,
         0f,
         PathDashPathEffect.Style.ROTATE
     )
@@ -65,7 +66,7 @@ class DashBoardView(context: Context?, attrs: AttributeSet?) : View(context, att
     )
     paint.pathEffect = null
 
-    pathMeasure.getPosTan(Utils.dp2px(250f) + Utils.dp2px(2f), posFloatArray, tanFloatArray)
+    pathMeasure.getPosTan(250f.dp2px() + 2f.dp2px(), posFloatArray, tanFloatArray)
     Logger.d(posFloatArray)
     Logger.d(tanFloatArray)
 

@@ -6,14 +6,15 @@ import android.util.AttributeSet
 import android.view.View
 import com.example.myprepare.R
 import com.example.myprepare.Utils
+import com.example.myprepare.Utils.dp2px
 
 class AvatarView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
   companion object {
 
-    private val WIDTH: Float = Utils.dp2px(140f)
-    private val PADDING: Float = Utils.dp2px(40f)
-    private val EDGE_WIDTH: Float = Utils.dp2px(2f)
+    private val WIDTH: Float = 140f.dp2px()
+    private val PADDING: Float = 40f.dp2px()
+    private val EDGE_WIDTH: Float = 2f.dp2px()
   }
 
   private val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)

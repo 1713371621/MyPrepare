@@ -8,6 +8,7 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import com.example.myprepare.Utils
+import com.example.myprepare.Utils.dp2px
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -15,8 +16,8 @@ class PieChartView(context: Context?, attrs: AttributeSet?) : View(context, attr
 
   companion object {
 
-    private val RADIUS: Float = Utils.dp2px(70f)
-    private val LENGTH: Float = Utils.dp2px(20f)
+    private val RADIUS: Float = 70f.dp2px()
+    private val LENGTH: Float = 20f.dp2px()
   }
 
   private val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
