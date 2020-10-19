@@ -16,7 +16,7 @@ class PieChartView(context: Context?, attrs: AttributeSet?) : View(context, attr
   companion object {
 
     private val RADIUS: Float = 70f.dp2px()
-    private val LENGTH: Float = 20f.dp2px()
+    private val LENGTH: Float = 5f.dp2px()
   }
 
   private val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -42,20 +42,17 @@ class PieChartView(context: Context?, attrs: AttributeSet?) : View(context, attr
     super.onDraw(canvas)
 
     var currentAngle = 0f
-    for (i: Int in angles.indices) {
-      paint.color = colors[i]
-
+    for ((index, angle) in angles.withIndex()) {
       canvas?.save()
 
-      if (i % 2 == 0) {
-        canvas?.translate(
-            (cos(Math.toRadians(currentAngle + angles[i] / 2.00)) * LENGTH).toFloat(),
-            (sin(Math.toRadians(currentAngle + angles[i] / 2.00)) * LENGTH).toFloat(),
-        )
-      }
+      paint.color = colors[index]
+      canvas?.translate(
+          (cos(Math.toRadians(currentAngle + angle / 2.00)) * LENGTH).toFloat(),
+          (sin(Math.toRadians(currentAngle + angle / 2.00)) * LENGTH).toFloat(),
+      )
+      canvas?.drawArc(bounds, currentAngle, angle, true, paint)
 
-      canvas?.drawArc(bounds, currentAngle, angles[i], true, paint)
-      currentAngle += angles[i]
+      currentAngle += angle
 
       canvas?.restore()
     }
