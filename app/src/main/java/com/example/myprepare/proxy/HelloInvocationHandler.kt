@@ -23,6 +23,6 @@ fun main() {
       handler
   ) as HelloInterface
 
-  proxyHello.doSomething()
+  proxyHello.doSomething("","")
   proxyHello.myDeviceNotFound()
 }
