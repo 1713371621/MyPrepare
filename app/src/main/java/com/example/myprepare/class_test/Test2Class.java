@@ -1,6 +1,5 @@
 package com.example.myprepare.class_test;
 
-import com.example.myprepare.class_test.Test1Class;
 import com.example.myprepare.class_test.Test1Class.InnerClass;
 
 public class Test2Class {

@@ -7,7 +7,6 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
-import com.example.myprepare.Utils
 import com.example.myprepare.Utils.dp2px
 import kotlin.math.cos
 import kotlin.math.sin

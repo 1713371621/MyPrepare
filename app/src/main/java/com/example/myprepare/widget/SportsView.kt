@@ -6,7 +6,6 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
-import com.example.myprepare.Utils
 import com.example.myprepare.Utils.dp2px
 
 class SportsView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {

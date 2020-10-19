@@ -5,7 +5,6 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import com.example.myprepare.R
-import com.example.myprepare.Utils
 import com.example.myprepare.Utils.dp2px
 
 class AvatarView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {

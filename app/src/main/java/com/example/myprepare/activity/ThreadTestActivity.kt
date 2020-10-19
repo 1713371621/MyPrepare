@@ -5,8 +5,6 @@ import android.os.SystemClock
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myprepare.R
-import com.orhanobut.logger.Logger
-import java.lang.Exception
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.SynchronousQueue

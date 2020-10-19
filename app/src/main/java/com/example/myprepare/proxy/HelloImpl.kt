@@ -1,8 +1,5 @@
 package com.example.myprepare.proxy
 
-import java.lang.reflect.InvocationHandler
-import java.lang.reflect.Method
-
 class HelloImpl : HelloInterface {
 
 //  val invocationHandler: InvocationHandler = object : InvocationHandler {
