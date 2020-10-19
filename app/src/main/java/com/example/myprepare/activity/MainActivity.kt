@@ -88,7 +88,8 @@ class MainActivity : AppCompatActivity() {
       RouterDetail("Retrofit", RetrofitActivity::class.java),
       RouterDetail("OkHttp", OkHttpActivity::class.java),
       RouterDetail("View", ViewActivity::class.java),
-      RouterDetail("View2", ViewActivity2::class.java),
+      RouterDetail("View2", ViewActivity::class.java),
+      RouterDetail("View3", ViewActivity3::class.java),
       RouterDetail("ThreadTest", ThreadTestActivity::class.java),
       RouterDetail("IOTest", IOActivity::class.java)
   )
