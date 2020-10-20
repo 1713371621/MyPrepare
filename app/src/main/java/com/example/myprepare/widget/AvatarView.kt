@@ -6,13 +6,13 @@ import android.util.AttributeSet
 import android.view.View
 import com.example.myprepare.R
 import com.example.myprepare.Utils.dp2px
-import com.example.myprepare.px
+import com.example.myprepare.dp
 
 class AvatarView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
   companion object {
 
-    private val WIDTH: Float = 140f.px
+    private val WIDTH: Float = 140f.dp
     private val PADDING: Float = 40f.dp2px()
     private val EDGE_WIDTH: Float = 2f.dp2px()
   }

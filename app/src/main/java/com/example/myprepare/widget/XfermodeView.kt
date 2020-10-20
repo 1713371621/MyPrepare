@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
-import com.example.myprepare.px
+import com.example.myprepare.dp
 
 class XfermodeView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     private val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -19,7 +19,7 @@ class XfermodeView(context: Context?, attrs: AttributeSet?) : View(context, attr
 
 
     companion object {
-        private val RADIUS: Float = 80f.px
+        private val RADIUS: Float = 80f.dp
     }
 
     init {
@@ -85,20 +85,20 @@ class XfermodeView(context: Context?, attrs: AttributeSet?) : View(context, attr
         canvas?.drawRect(bounds, paint)
 
         paint.color = Color.parseColor("#1abc9c")
-        paint.strokeWidth = 3f.px
+        paint.strokeWidth = 3f.dp
         canvas?.drawLine(
-            width / 2f - 100f.px,
+            width / 2f - 100f.dp,
             height / 2f,
-            width / 2f + 100f.px,
+            width / 2f + 100f.dp,
             height / 2f,
             paint
         )
 
         canvas?.drawLine(
             width / 2f,
-            height / 2f - 100f.px,
+            height / 2f - 100f.dp,
             width / 2f,
-            height / 2f + 100f.px,
+            height / 2f + 100f.dp,
             paint
         )
     }

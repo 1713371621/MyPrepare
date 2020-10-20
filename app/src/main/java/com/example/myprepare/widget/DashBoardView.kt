@@ -5,7 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import com.example.myprepare.Utils.dp2px
-import com.example.myprepare.px
+import com.example.myprepare.dp
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -27,12 +27,12 @@ class DashBoardView(context: Context?, attrs: AttributeSet?) : View(context, att
   private val posFloatArray = FloatArray(2)
   private val tanFloatArray = FloatArray(2)
 
-  private val DASH_WIDTH = 2f.px
-  private val DASH_LENGTH = 5f.px
+  private val DASH_WIDTH = 2f.dp
+  private val DASH_LENGTH = 5f.dp
 
   init {
     paint.style = Paint.Style.STROKE
-    paint.strokeWidth = 2f.px
+    paint.strokeWidth = 2f.dp
 
     dash.addRect(0f, 0f, 2f.dp2px(), 6f.dp2px(), Path.Direction.CW)
     arcPath.addArc(
