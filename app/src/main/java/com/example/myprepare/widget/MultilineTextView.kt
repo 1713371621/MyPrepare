@@ -1,6 +1,8 @@
 package com.example.myprepare.widget
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.text.Layout
@@ -8,6 +10,7 @@ import android.text.StaticLayout
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
+import com.example.myprepare.R
 import com.example.myprepare.dp
 
 class MultilineTextView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
@@ -24,16 +27,13 @@ class MultilineTextView(context: Context, attrs: AttributeSet?) : View(context, 
                 "了解清楚lorem ipsum到底是一种怎么样的存在,是解决一切问题的关键.就我个人来说,lorem ipsum对我" +
                 "的意义,不能不说非常重大.带着这些问题,我们来审视一下lorem ipsum.一般来说,总结的来说,既然如此.\n"
 
-    private val paint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
+    private val textPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
         textSize = 16.dp
     }
 
-    private val staticLayout: StaticLayout =
-        StaticLayout.Builder.obtain(text, 0, text.length, paint, width)
-            .setAlignment(Layout.Alignment.ALIGN_NORMAL)
-            .setLineSpacing(0f, 1f)
-            .setIncludePad(false)
-            .build()
+    private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    private val bitmap: Bitmap = getAvatar(100.dp.toInt())
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -41,6 +41,23 @@ class MultilineTextView(context: Context, attrs: AttributeSet?) : View(context, 
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        staticLayout.draw(canvas)
+//        val staticLayout = StaticLayout.Builder.obtain(text, 0, text.length, textPaint, width)
+//            .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+//            .setLineSpacing(0f, 1f)
+//            .setIncludePad(false)
+//            .build()
+//        staticLayout.draw(canvas)
+
+        canvas.drawBitmap(bitmap,width - 100.dp, 150f, paint )
+    }
+
+    private fun getAvatar(avatarWidth: Int): Bitmap {
+        val options: BitmapFactory.Options = BitmapFactory.Options()
+        options.inJustDecodeBounds = true
+        BitmapFactory.decodeResource(resources, R.drawable.batman, options)
+        options.inJustDecodeBounds = false
+        options.inDensity = options.outWidth
+        options.inTargetDensity = avatarWidth
+        return BitmapFactory.decodeResource(resources, R.drawable.batman, options)
     }
 }
