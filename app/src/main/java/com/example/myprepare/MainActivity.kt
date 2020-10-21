@@ -1,4 +1,4 @@
-package com.example.myprepare.activity
+package com.example.myprepare
 
 import android.Manifest
 import android.content.Intent
@@ -10,7 +10,7 @@ import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myprepare.R
+import com.example.myprepare.activity.*
 import com.example.myprepare.module.RouterDetail
 import com.example.myprepare.recyclerview.MyRecyclerViewAdapter
 import com.orhanobut.logger.Logger
@@ -90,6 +90,7 @@ class MainActivity : AppCompatActivity() {
       RouterDetail("View", ViewActivity::class.java),
       RouterDetail("View2", ViewActivity::class.java),
       RouterDetail("View3", ViewActivity3::class.java),
+      RouterDetail("View4", ViewActivity4::class.java),
       RouterDetail("ThreadTest", ThreadTestActivity::class.java),
       RouterDetail("IOTest", IOActivity::class.java)
   )
