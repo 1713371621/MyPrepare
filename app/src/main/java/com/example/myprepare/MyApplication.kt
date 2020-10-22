@@ -2,10 +2,15 @@ package com.example.myprepare
 
 import android.app.Application
 import android.content.Context
+import android.os.Process
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
+import java.io.BufferedReader
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileReader
 
 class MyApplication : Application() {
 
@@ -16,6 +21,25 @@ class MyApplication : Application() {
     @get:JvmName("currentApplication")
     lateinit var currentApplication: Context
       private set
+
+    val progressName: String
+      get() {
+        var fileInputStream: FileInputStream? = null
+        var bufferedReader: BufferedReader? = null
+        var fileReader: FileReader? = null
+        try {
+          val file = File("/proc/${Process.myPid()}/cmdline")
+          fileInputStream = FileInputStream(file)
+          fileReader = FileReader(file)
+          bufferedReader = BufferedReader(fileReader)
+//          bufferedReader = fileInputStream.bufferedReader()
+          return bufferedReader.readLine().trim()
+        } finally {
+          fileInputStream?.close()
+          bufferedReader?.close()
+          fileReader?.close()
+        }
+      }
   }
 
 
@@ -27,6 +51,8 @@ class MyApplication : Application() {
   override fun onCreate() {
     super.onCreate()
     initLogger()
+    val pid: Int = Process.myPid()
+    Logger.d("pid = $pid, progressName = $progressName")
   }
 
   private fun initLogger() {

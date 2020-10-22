@@ -1,6 +1,10 @@
 package com.example.myprepare.class_test;
 
 import com.example.myprepare.class_test.Test1Class.InnerClass;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 
 public class Test2Class {
 
@@ -12,6 +16,15 @@ public class Test2Class {
     innerClass.say();
 
     Test1Class test1Class = new Test1Class();
+
+    File file = new File("");
+    try (
+        FileInputStream fileInputStream = new FileInputStream(file);
+    ) {
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
 }
