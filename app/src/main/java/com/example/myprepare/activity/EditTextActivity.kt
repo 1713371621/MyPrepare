@@ -10,13 +10,13 @@ import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_edit_text.*
 
 class EditTextActivity : AppCompatActivity() {
-
+  
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_edit_text)
     initView()
   }
-
+  
   private fun initView() {
     edit_text_text_2.imeOptions = EditorInfo.IME_ACTION_NEXT
     edit_text_text_1.setOnEditorActionListener(object : TextView.OnEditorActionListener {
@@ -24,7 +24,7 @@ class EditTextActivity : AppCompatActivity() {
         Logger.d("actionId = $actionId, event = $event")
         return true
       }
-
+  
     })
   }
 }

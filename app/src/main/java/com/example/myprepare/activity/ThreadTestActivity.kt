@@ -16,36 +16,36 @@ import java.util.concurrent.locks.ReentrantLock
 import java.util.concurrent.locks.ReentrantReadWriteLock
 
 class ThreadTestActivity : AppCompatActivity() {
-
+  
   private val monitor = java.lang.Object()
   private var name = ""
   private var i: AtomicInteger = AtomicInteger(0)
-
+  
   private val reentrantReadWriteLock: ReentrantReadWriteLock = ReentrantReadWriteLock()
   private val readLock = reentrantReadWriteLock.readLock()
   private val writeLock = reentrantReadWriteLock.writeLock()
-
+  
   private val lock: ReentrantLock = ReentrantLock()
   private final val condition: Condition = lock.newCondition()
   private val queue: Queue<String> = LinkedList()
-
+  
   companion object {
-
+    
     private const val TAG = "ThreadTestActivity"
   }
-
+  
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_thread_test)
 
 //    threadTest()
-
+    
     printTestMessage()
   }
-
+  
   private var isNum: Boolean = true
   private var index: Int = 1
-
+  
   private fun printTestMessage() {
     Log.d(TAG, "printTestMessage: ")
     Thread {
@@ -53,7 +53,7 @@ class ThreadTestActivity : AppCompatActivity() {
         printNumber()
       }
     }.start()
-
+    
     Thread {
       for (i: Int in 0 until 26) {
         printLetter()
@@ -61,7 +61,7 @@ class ThreadTestActivity : AppCompatActivity() {
     }.start()
     Log.d(TAG, "printTestMessage: end")
   }
-
+  
   private fun printNumber() {
     synchronized(monitor) {
       if (!isNum) {
@@ -73,7 +73,7 @@ class ThreadTestActivity : AppCompatActivity() {
       monitor.notify()
     }
   }
-
+  
   private fun printLetter() {
     synchronized(monitor) {
       if (isNum) {
@@ -85,17 +85,17 @@ class ThreadTestActivity : AppCompatActivity() {
       monitor.notify()
     }
   }
-
+  
   private fun threadTest() {
     val synchronousQueue: SynchronousQueue<Runnable> = SynchronousQueue<Runnable>()
     val executor: ExecutorService =
-        ThreadPoolExecutor(1, 6, 10, TimeUnit.SECONDS, synchronousQueue)
-
+      ThreadPoolExecutor(1, 6, 10, TimeUnit.SECONDS, synchronousQueue)
+    
     val thread2 = Thread() {
       SystemClock.sleep(2000)
       initName()
     }
-
+    
     val thread1 = Thread() {
       SystemClock.sleep(1000)
 //      thread2.join()
@@ -105,42 +105,42 @@ class ThreadTestActivity : AppCompatActivity() {
       SystemClock.sleep(500)
       printName("3")
     }
-
+    
     val thread4 = Thread() {
       SystemClock.sleep(500)
       printName("4")
     }
-
+    
     executor.execute {
       SystemClock.sleep(100)
       printName("5")
     }
-
+    
     executor.execute {
       SystemClock.sleep(200)
       printName("6")
     }
-
+    
     executor.execute {
       SystemClock.sleep(300)
       printName("7")
     }
-
+    
     executor.execute {
       SystemClock.sleep(300)
       printName("8")
     }
-
+    
     executor.execute {
       SystemClock.sleep(300)
       printName("9")
     }
-
+    
     executor.execute {
       SystemClock.sleep(300)
       printName("10")
     }
-
+    
     thread1.start()
     thread2.start()
     thread3.start()
@@ -192,7 +192,7 @@ class ThreadTestActivity : AppCompatActivity() {
 //      }
 //    }.start()
   }
-
+  
   private fun printMessage(message: String) {
     val lock: ReentrantLock = this.lock
     lock.lock()
@@ -204,7 +204,7 @@ class ThreadTestActivity : AppCompatActivity() {
       lock.unlock()
     }
   }
-
+  
   private fun printName(num: String) {
     synchronized(monitor) {
       Log.d(TAG, "printName-$num: start")
@@ -216,7 +216,7 @@ class ThreadTestActivity : AppCompatActivity() {
       Log.d(TAG, "printName-$num: print my name: $name")
     }
   }
-
+  
   private fun initName() {
     synchronized(monitor) {
       name = "RESTFulS"
@@ -224,5 +224,5 @@ class ThreadTestActivity : AppCompatActivity() {
       Log.d(TAG, "notifyAll")
     }
   }
-
+  
 }

@@ -15,14 +15,14 @@ import org.reactivestreams.Subscription
 import java.util.concurrent.TimeUnit
 
 class RxJava3Activity : AppCompatActivity() {
-
+  
   companion object {
-
+    
     private const val TAG = "RxJava3Activity"
   }
-
+  
   private var subscription: Subscription? = null
-
+  
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_rxjava3)
@@ -69,7 +69,7 @@ class RxJava3Activity : AppCompatActivity() {
 //                }
 //
 //            })
-
+    
     Flowable.create(object : FlowableOnSubscribe<Int> {
       override fun subscribe(emitter: FlowableEmitter<Int>?) {
         Log.d(TAG, "subscribe: first requested = ${emitter?.requested()}")
@@ -87,37 +87,37 @@ class RxJava3Activity : AppCompatActivity() {
         }
         emitter?.onComplete()
       }
-
+  
     }, BackpressureStrategy.ERROR)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .delay(2000, TimeUnit.MILLISECONDS)
-        .subscribe(object : Subscriber<Int> {
-          override fun onSubscribe(s: Subscription?) {
-            Log.d(TAG, "onSubscribe: ")
-            subscription = s
-            subscription?.request(2)
-          }
-
-          override fun onNext(t: Int?) {
-            Log.d(TAG, "onNext: $t")
-            subscription?.request(1)
-            subscription?.request(1)
-          }
-
-          override fun onError(t: Throwable?) {
-            t?.printStackTrace()
-          }
-
-          override fun onComplete() {
-            Log.d(TAG, "onComplete: ")
-            subscription?.cancel()
-          }
-
-        })
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .delay(2000, TimeUnit.MILLISECONDS)
+      .subscribe(object : Subscriber<Int> {
+        override fun onSubscribe(s: Subscription?) {
+          Log.d(TAG, "onSubscribe: ")
+          subscription = s
+          subscription?.request(2)
+        }
+  
+        override fun onNext(t: Int?) {
+          Log.d(TAG, "onNext: $t")
+          subscription?.request(1)
+          subscription?.request(1)
+        }
+  
+        override fun onError(t: Throwable?) {
+          t?.printStackTrace()
+        }
+  
+        override fun onComplete() {
+          Log.d(TAG, "onComplete: ")
+          subscription?.cancel()
+        }
+  
+      })
     Log.d(TAG, "onCreate: end!")
   }
-
+  
   override fun onDestroy() {
     super.onDestroy()
     subscription?.cancel()

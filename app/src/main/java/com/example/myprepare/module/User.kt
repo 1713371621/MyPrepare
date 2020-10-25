@@ -4,10 +4,10 @@ import android.util.Log
 
 class User {
   companion object {
-
+    
     private const val TAG = "User"
   }
-
+  
   var userName: String? = null
     get() {
       Log.d(TAG, ": ")
@@ -17,7 +17,7 @@ class User {
       Log.d(TAG, "value: $value")
       field = value
     }
-
+  
   @JvmField
   var phoneNumber: String? = null
 }
