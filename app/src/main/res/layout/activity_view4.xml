@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.ViewActivity4">
 
-    <com.example.myprepare.widget.CameraView
+    <com.example.myprepare.view.CameraView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

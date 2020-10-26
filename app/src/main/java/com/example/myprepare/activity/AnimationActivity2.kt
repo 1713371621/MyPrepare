@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myprepare.R
 import com.example.myprepare.dp
-import com.example.myprepare.widget.ProvinceView
+import com.example.myprepare.view.ProvinceView
 import kotlinx.android.synthetic.main.activity_animation2.*
 import kotlin.math.abs
 

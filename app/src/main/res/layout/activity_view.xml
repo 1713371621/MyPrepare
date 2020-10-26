@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.ViewActivity">
 
-    <com.example.myprepare.widget.DashBoardView
+    <com.example.myprepare.view.DashBoardView
         android:id="@+id/dash_board_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toTopOf="@+id/pie_chart_view"
         />
 
-    <com.example.myprepare.widget.PieChartView
+    <com.example.myprepare.view.PieChartView
         android:id="@+id/pie_chart_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dash_board_view"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <com.example.myprepare.widget.AvatarView
+    <com.example.myprepare.view.AvatarView
         android:id="@+id/avatar_view"
         android:layout_width="0dp"
         android:layout_height="0dp"

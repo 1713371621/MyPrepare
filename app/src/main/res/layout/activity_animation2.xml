@@ -6,14 +6,14 @@
   android:layout_height="match_parent"
   tools:context=".activity.AnimationActivity2">
 
-  <com.example.myprepare.widget.AvatarView
+  <com.example.myprepare.view.AvatarView
     android:id="@+id/animation2_avatar_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
-  <com.example.myprepare.widget.ProvinceView
+  <com.example.myprepare.view.ProvinceView
     android:id="@+id/animation2_province_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

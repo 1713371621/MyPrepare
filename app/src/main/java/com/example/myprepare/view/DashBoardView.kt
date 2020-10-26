@@ -1,4 +1,4 @@
-package com.example.myprepare.widget
+package com.example.myprepare.view
 
 import android.content.Context
 import android.graphics.*
@@ -16,6 +16,7 @@ class DashBoardView(context: Context?, attrs: AttributeSet?) : View(context, att
     private const val ANGLE = 120
     private val RADIUS: Float = 100f.dp2px()
     private val LENGTH: Float = RADIUS * 2f / 3f
+    const val SCALES_NUMBER: Float = 100f
   }
   
   private val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -24,11 +25,12 @@ class DashBoardView(context: Context?, attrs: AttributeSet?) : View(context, att
   private val pathDashPathEffect: PathDashPathEffect
   
   private val pathMeasure: PathMeasure
-  private val posFloatArray = FloatArray(2)
-  private val tanFloatArray = FloatArray(2)
   
-  private val DASH_WIDTH = 2f.dp
-  private val DASH_LENGTH = 5f.dp
+  var index: Int = 0
+    set(value) {
+      field = value
+      invalidate()
+    }
   
   init {
     paint.style = Paint.Style.STROKE
@@ -43,7 +45,7 @@ class DashBoardView(context: Context?, attrs: AttributeSet?) : View(context, att
     pathMeasure = PathMeasure(arcPath, false)
     pathDashPathEffect = PathDashPathEffect(
       dash,
-      (pathMeasure.length - 2f.dp2px()) / 20,
+      (pathMeasure.length - 2f.dp2px()) / SCALES_NUMBER,
       0f,
       PathDashPathEffect.Style.ROTATE
     )
@@ -66,15 +68,14 @@ class DashBoardView(context: Context?, attrs: AttributeSet?) : View(context, att
     canvas?.drawPath(arcPath, paint)
     paint.pathEffect = null
     
-    val index = 7
     val stopX: Float = width / 2 + LENGTH * cos(
       Math.toRadians(
-        (ANGLE / 2f + 90 + (360 - ANGLE) / 20f * index).toDouble()
+        (ANGLE / 2f + 90 + (360 - ANGLE) / SCALES_NUMBER * index).toDouble()
       )
     ).toFloat()
     val stopY: Float = height / 2 + LENGTH * sin(
       Math.toRadians(
-        (ANGLE / 2f + 90 + (360 - ANGLE) / 20f * index).toDouble()
+        (ANGLE / 2f + 90 + (360 - ANGLE) / SCALES_NUMBER * index).toDouble()
       )
     ).toFloat()
     canvas?.drawLine(
@@ -86,7 +87,7 @@ class DashBoardView(context: Context?, attrs: AttributeSet?) : View(context, att
     )
   }
   
-  private fun getAngleFromMark(mark: Int): Int {
+  fun getAngleFromMark(mark: Int): Int {
     return 90 + ANGLE / 2 + (360 - ANGLE) / 20 * mark
   }
 }

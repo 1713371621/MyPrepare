@@ -1,4 +1,4 @@
-package com.example.myprepare.widget
+package com.example.myprepare.view
 
 import android.content.Context
 import android.graphics.Bitmap

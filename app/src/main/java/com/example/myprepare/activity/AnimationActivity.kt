@@ -1,9 +1,6 @@
 package com.example.myprepare.activity
 
-import android.animation.Keyframe
-import android.animation.ObjectAnimator
-import android.animation.PropertyValuesHolder
-import android.animation.TypeEvaluator
+import android.animation.*
 import android.graphics.PointF
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -71,6 +68,8 @@ class AnimationActivity : AppCompatActivity() {
     val imageAnimator = ObjectAnimator.ofPropertyValuesHolder(animation_image_view, keyframesHolder)
     imageAnimator.startDelay = 1000
     imageAnimator.duration = 1000
+    imageAnimator.repeatCount = ValueAnimator.INFINITE
+    imageAnimator.repeatMode = ValueAnimator.REVERSE
     imageAnimator.start()
 
     // 点的动画
