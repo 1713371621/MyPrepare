@@ -95,7 +95,8 @@ class MainActivity : AppCompatActivity() {
     RouterDetail("IOTest", IOActivity::class.java),
     RouterDetail("Animation", AnimationActivity::class.java),
     RouterDetail("Animation2", AnimationActivity2::class.java),
-    RouterDetail("BitmapDrawable", BitmapDrawableActivity::class.java)
+    RouterDetail("BitmapDrawable", BitmapDrawableActivity::class.java),
+    RouterDetail("MaterialEditText", MaterialEditTextActivity::class.java)
   )
   
   override fun onCreate(savedInstanceState: Bundle?) {
