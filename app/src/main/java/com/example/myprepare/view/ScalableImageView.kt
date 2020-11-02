@@ -184,8 +184,8 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
       Log.d(TAG, "onDoubleTap: offsetX = $offsetX, offsetY = $offsetY")
 //      big = !big
       if (currentScale < bigScale) {
-        offsetX += -(e.x - width / 2f) * (bigScale / smallScale)
-        offsetY += -(e.y - height / 2f) * (bigScale / smallScale)
+        offsetX = -(e.x - width / 2f) * (bigScale / currentScale)
+        offsetY = -(e.y - height / 2f) * (bigScale / currentScale)
         fixOffset()
         scaleAnimator.setFloatValues(currentScale, bigScale)
         scaleAnimator.start()
