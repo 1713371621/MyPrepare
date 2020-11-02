@@ -182,14 +182,13 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
     
     override fun onDoubleTap(e: MotionEvent): Boolean {
       Log.d(TAG, "onDoubleTap: offsetX = $offsetX, offsetY = $offsetY")
-//      big = !big
-      if (currentScale < bigScale) {
+      if (currentScale < smallScale + (bigScale - smallScale) * 0.4f) {
         offsetX = -(e.x - width / 2f) * (bigScale / currentScale)
         offsetY = -(e.y - height / 2f) * (bigScale / currentScale)
         fixOffset()
         scaleAnimator.setFloatValues(currentScale, bigScale)
         scaleAnimator.start()
-      } else if (currentScale == bigScale) {
+      } else {
         scaleAnimator.setFloatValues(bigScale, smallScale)
         scaleAnimator.start()
       }
