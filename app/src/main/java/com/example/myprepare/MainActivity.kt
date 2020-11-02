@@ -100,7 +100,8 @@ class MainActivity : AppCompatActivity() {
     RouterDetail("MeasureLayout", MeasureLayoutActivity::class.java),
     RouterDetail("TagLayout", TagLayoutActivity::class.java),
     RouterDetail("ViewTest", ViewTestActivity::class.java),
-    RouterDetail("TouchEventTest", TouchEventTestActivity::class.java)
+    RouterDetail("TouchEventTest", TouchEventTestActivity::class.java),
+    RouterDetail("ScalableImageView", ScalableImageViewActivity::class.java)
   )
   
   override fun onCreate(savedInstanceState: Bundle?) {

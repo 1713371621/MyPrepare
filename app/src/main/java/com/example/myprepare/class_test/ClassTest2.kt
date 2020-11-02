@@ -1,8 +1,6 @@
 package com.example.myprepare.class_test
 
 class TestClass0 : TestClass2() {
-  // TODO: 2020/10/15 by lazy
-  // TODO: 2020/10/15 let also run apply区别
 }
 
 class TestClass1 : TestClass2() {

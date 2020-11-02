@@ -10,6 +10,11 @@ class ClassTest {
   var age: Int? = null
   var userName: String? = null
   
+  init {
+    val plant = Plant(1,"2","3")
+    plant.colour
+  }
+  
   inner class Plant(a: Int, n: String, c: String) {
     
     var colour: String? = null
@@ -25,7 +30,6 @@ class ClassTest {
   internal class StaticInner {
     
     init {
-      
     }
     
     companion object {
