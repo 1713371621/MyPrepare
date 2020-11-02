@@ -116,4 +116,8 @@ class TagLayout(context: Context, attrs: AttributeSet) : ViewGroup(context, attr
       child.layout(childBounds.left, childBounds.top, childBounds.right, childBounds.bottom)
     }
   }
+  
+  override fun shouldDelayChildPressedState(): Boolean {
+    return false
+  }
 }

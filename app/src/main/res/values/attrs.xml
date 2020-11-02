@@ -3,4 +3,9 @@
   <declare-styleable name="MaterialEditText">
     <attr format="boolean" name="useFloatingLabel" />
   </declare-styleable>
+
+  <declare-styleable name="CircleView">
+    <attr format="dimension" name="radius" />
+    <attr format="dimension" name="padding" />
+  </declare-styleable>
 </resources>

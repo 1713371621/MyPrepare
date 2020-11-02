@@ -98,7 +98,9 @@ class MainActivity : AppCompatActivity() {
     RouterDetail("BitmapDrawable", BitmapDrawableActivity::class.java),
     RouterDetail("MaterialEditText", MaterialEditTextActivity::class.java),
     RouterDetail("MeasureLayout", MeasureLayoutActivity::class.java),
-    RouterDetail("TagLayout", TagLayoutActivity::class.java)
+    RouterDetail("TagLayout", TagLayoutActivity::class.java),
+    RouterDetail("ViewTest", ViewTestActivity::class.java),
+    RouterDetail("TouchEventTest", TouchEventTestActivity::class.java)
   )
   
   override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,16 +1,17 @@
 package com.example.myprepare.view
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import com.example.myprepare.R
 import com.example.myprepare.dp
-import kotlin.math.min
 import kotlin.math.roundToInt
 
-class CircleView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
+class CircleView(context: Context, attrs: AttributeSet) : View(context, attrs) {
   
   var padding: Float = 30.dp
   var radius = 100.dp
@@ -25,9 +26,17 @@ class CircleView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
     color = Color.parseColor("#bd68a1")
   }
   
+  init {
+    val typedArray: TypedArray =
+      context.obtainStyledAttributes(attrs, R.styleable.CircleView)
+    radius = typedArray.getDimension(R.styleable.CircleView_radius, 100.dp)
+    padding = typedArray.getDimension(R.styleable.CircleView_padding, 10.dp)
+    typedArray.recycle()
+  }
+  
   override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
 //    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-    val size: Int = ((radius + padding) * 2).roundToInt()
+    val size: Int = ((radius + padding) * 2).toInt()
     
     /*val widthMeasureSpecMode = MeasureSpec.getMode(widthMeasureSpec)
     val widthMeasureSpecSize = MeasureSpec.getSize(widthMeasureSpec)
@@ -38,7 +47,7 @@ class CircleView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
       else -> size
     }*/
     val widthSize = resolveSize(size, widthMeasureSpec)
-  
+    
     /*val heightMeasureSpecMode = MeasureSpec.getMode(heightMeasureSpec)
     val heightMeasureSpecSize = MeasureSpec.getSize(heightMeasureSpec)
     val heightSize = when (heightMeasureSpecMode) {
@@ -48,11 +57,12 @@ class CircleView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
       else -> size
     }*/
     val heightSize = resolveSize(size, heightMeasureSpec)
-  
+    
     setMeasuredDimension(widthSize, heightSize)
   }
   
   override fun onDraw(canvas: Canvas) {
     canvas.drawCircle(padding + radius, padding + radius, radius, paint)
+//    canvas.drawCircle(width / 2f, height / 2f, radius, paint)
   }
 }
