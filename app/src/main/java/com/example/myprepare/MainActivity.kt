@@ -101,7 +101,8 @@ class MainActivity : AppCompatActivity() {
     RouterDetail("TagLayout", TagLayoutActivity::class.java),
     RouterDetail("ViewTest", ViewTestActivity::class.java),
     RouterDetail("TouchEventTest", TouchEventTestActivity::class.java),
-    RouterDetail("ScalableImageView", ScalableImageViewActivity::class.java)
+    RouterDetail("ScalableImageView", ScalableImageViewActivity::class.java),
+    RouterDetail("BadgeTest", BadgeTestActivity::class.java)
   )
   
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,6 +112,8 @@ class MainActivity : AppCompatActivity() {
     Logger.d("start")
     initData()
     initView()
+    
+    drawBadge()
   }
   
   private fun initData() {

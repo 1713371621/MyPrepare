@@ -64,7 +64,11 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
   private val scaleGestureDetector: ScaleGestureDetector =
     ScaleGestureDetector(context, myScaleGestureDetectorListener)
 
-//  private var big = false
+  init {
+  
+    paint.style = Paint.Style.STROKE
+    paint.strokeWidth = 20.dp
+  }
   
   override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
     super.onSizeChanged(w, h, oldw, oldh)

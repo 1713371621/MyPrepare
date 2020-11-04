@@ -1,14 +1,11 @@
 package com.example.myprepare.drawable
 
-import android.graphics.Canvas
-import android.graphics.ColorFilter
-import android.graphics.Paint
-import android.graphics.PixelFormat
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import androidx.core.graphics.toColorInt
 import com.example.myprepare.dp
 
-class MeshDrawable : Drawable() {
+class MeshDrawable(drawableColor: Int = "#ac3b22".toColorInt()) : Drawable() {
   
   var interval: Float = 50.dp
   
@@ -16,7 +13,7 @@ class MeshDrawable : Drawable() {
     style = Paint.Style.STROKE
     strokeWidth = 3.dp
 //    color = Color.parseColor("#ac3b22")
-    color = "#ac3b22".toColorInt()
+    color = drawableColor
   }
   
   override fun draw(canvas: Canvas) {

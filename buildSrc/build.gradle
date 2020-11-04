@@ -1,0 +1,25 @@
+repositories {
+    maven {
+        url 'https://maven.aliyun.com/repository/google'
+    }
+    maven {
+        url 'https://maven.aliyun.com/repository/public'
+    }
+    maven {
+        url 'https://maven.aliyun.com/repository/central'
+    }
+    mavenLocal()
+    mavenCentral()
+    google()
+    jcenter()
+}
+
+dependencies {
+//    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10"
+    implementation 'com.android.tools.build:gradle:4.1.0'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}

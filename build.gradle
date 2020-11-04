@@ -44,5 +44,11 @@ allprojects {
 }
 
 task clean(type: Delete) {
+    doFirst {
+        println ("start clean, file = " + rootProject.buildDir + ".")
+    }
     delete rootProject.buildDir
+    doLast {
+        println ("clean success.")
+    }
 }
