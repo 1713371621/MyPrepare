@@ -2,12 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-//apply plugin: 'com.example.my'
-//
-//my {
-//    name 'uijwyk'
-//    age 990
-//}
+apply plugin: 'com.example.my'
+my {
+    name 'uijwyk'
+    age 990
+}
 
 android {
   compileSdkVersion 29
@@ -19,6 +18,8 @@ android {
     targetSdkVersion 29
     versionCode 1
     versionName "1.0"
+
+    buildConfigField("String", "TEST_NAME", '"uijwyk"')
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
@@ -70,7 +71,7 @@ dependencies {
   implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
   implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
   implementation 'com.google.android.material:material:1.2.1'
-  testImplementation 'junit:junit:4.13'
+  testImplementation "junit:junit:$junit_version"
   androidTestImplementation 'androidx.test.ext:junit:1.1.2'
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
@@ -100,5 +101,5 @@ dependencies {
   implementation project(":testlibrary")
 
   // 看com.android.application用的
-  compileOnly 'com.android.tools.build:gradle:4.1.0'
+//  compileOnly 'com.android.tools.build:gradle:4.1.0'
 }
