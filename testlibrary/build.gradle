@@ -27,16 +27,16 @@ android {
         }
     }
 
-    flavorDimensions "paying"
-    productFlavors {
-        free {
-            dimension "paying"
-        }
-
-        paid {
-            dimension "paying"
-        }
-    }
+//    flavorDimensions "paying"
+//    productFlavors {
+//        free {
+//            dimension "paying"
+//        }
+//
+//        paid {
+//            dimension "paying"
+//        }
+//    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

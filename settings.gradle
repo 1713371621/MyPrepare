@@ -1,3 +1,4 @@
+include ':plugin'
 include ':testlibrary'
 include ':app'
 setBinding(new Binding([gradle: this]))

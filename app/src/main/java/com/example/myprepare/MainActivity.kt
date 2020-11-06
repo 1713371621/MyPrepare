@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myprepare.activity.*
 import com.example.myprepare.module.RouterDetail
+import com.example.myprepare.plugin_and_hot_fix.PluginAndHotFixActivity
 import com.example.myprepare.recyclerview.MyRecyclerViewAdapter
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
@@ -102,7 +103,8 @@ class MainActivity : AppCompatActivity() {
     RouterDetail("ViewTest", ViewTestActivity::class.java),
     RouterDetail("TouchEventTest", TouchEventTestActivity::class.java),
     RouterDetail("ScalableImageView", ScalableImageViewActivity::class.java),
-    RouterDetail("BadgeTest", BadgeTestActivity::class.java)
+    RouterDetail("BadgeTest", BadgeTestActivity::class.java),
+    RouterDetail("PluginAndHotFix", PluginAndHotFixActivity::class.java)
   )
   
   override fun onCreate(savedInstanceState: Bundle?) {

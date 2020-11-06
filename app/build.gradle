@@ -4,8 +4,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'com.example.my'
 my {
-    name 'uijwyk'
-    age 990
+  name 'uijwyk'
+  age 990
 }
 
 android {
@@ -34,16 +34,16 @@ android {
     }
   }
 
-  flavorDimensions "paying"
-  productFlavors {
-    free {
-      dimension "paying"
-    }
-
-    paid {
-      dimension "paying"
-    }
-  }
+//  flavorDimensions "paying"
+//  productFlavors {
+//    free {
+//      dimension "paying"
+//    }
+//
+//    paid {
+//      dimension "paying"
+//    }
+//  }
 
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
@@ -60,6 +60,12 @@ android {
   lintOptions {
     checkReleaseBuilds false
     abortOnError false
+  }
+}
+
+gradle.taskGraph.whenReady {
+  it.allTasks.each { task ->
+    println "task name = ${task.name}, class name = ${task.class.name - '_Decorated'}"
   }
 }
 
