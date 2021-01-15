@@ -1,16 +1,11 @@
-package com.example.myprepare.activity
+package com.example.myprepare.view_test
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
-import android.os.Looper
-import android.os.SystemClock
 import android.util.Log
 import android.view.ViewTreeObserver
-import android.view.WindowManager
-import android.widget.Button
 import com.example.myprepare.R
-import com.example.myprepare.dp
 import kotlinx.android.synthetic.main.activity_view_test.*
 import kotlin.concurrent.thread
 

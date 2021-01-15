@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ViewActivity">
+    tools:context=".view_test.ViewActivity">
 
     <com.example.myprepare.view.DashBoardView
         android:id="@+id/dash_board_view"

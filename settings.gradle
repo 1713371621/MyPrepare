@@ -11,3 +11,5 @@ evaluate(new File(
   'flutter_module/.android/include_flutter.groovy'
 ))
 rootProject.name = "MyPrepare"
+
+include ':flutter_module'

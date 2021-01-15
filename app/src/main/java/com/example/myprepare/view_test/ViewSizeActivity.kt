@@ -1,4 +1,4 @@
-package com.example.myprepare.activity
+package com.example.myprepare.view_test
 
 import android.os.Build
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.text.Html.FROM_HTML_MODE_LEGACY
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myprepare.R
-import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_view_size.*
 
 class ViewSizeActivity : AppCompatActivity() {

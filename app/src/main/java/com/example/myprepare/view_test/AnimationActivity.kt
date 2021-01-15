@@ -1,4 +1,4 @@
-package com.example.myprepare.activity
+package com.example.myprepare.view_test
 
 import android.animation.*
 import android.graphics.PointF

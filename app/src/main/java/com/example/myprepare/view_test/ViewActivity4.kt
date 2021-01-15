@@ -1,13 +1,13 @@
-package com.example.myprepare.activity
+package com.example.myprepare.view_test
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myprepare.R
 
-class ViewActivity2 : AppCompatActivity() {
+class ViewActivity4 : AppCompatActivity() {
   
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_view2)
+    setContentView(R.layout.activity_view4)
   }
 }

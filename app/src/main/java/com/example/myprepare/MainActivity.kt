@@ -15,7 +15,8 @@ import com.example.myprepare.annotation_test.AnnotationTestActivity
 import com.example.myprepare.module.RouterDetail
 import com.example.myprepare.plugin_and_hot_fix.PluginAndHotFixActivity
 import com.example.myprepare.recyclerview.MyRecyclerViewAdapter
-import com.orhanobut.logger.Logger
+import com.example.myprepare.view_test.*
+import com.example.myprepare.view_test.left_age.LeftAgeAnimationActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -111,7 +112,8 @@ class MainActivity : AppCompatActivity() {
     RouterDetail("CoroutinesTest", CoroutinesTestActivity::class.java),
     RouterDetail("HashMapTest", HashMapTestActivity::class.java),
     RouterDetail("ActivityTest", ActivityTestActivity::class.java),
-    RouterDetail("SerializableTest", SerializableTestActivity::class.java)
+    RouterDetail("SerializableTest", SerializableTestActivity::class.java),
+    RouterDetail("LeftAgeAnimation", LeftAgeAnimationActivity::class.java)
   )
   
   override fun onCreate(savedInstanceState: Bundle?) {
