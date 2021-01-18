@@ -8,4 +8,12 @@
     <attr format="dimension" name="radius" />
     <attr format="dimension" name="padding" />
   </declare-styleable>
+
+  <declare-styleable name="ScrollerNumberView">
+    <attr format="dimension" name="textSize" />
+    <attr format="dimension" name="singleTextWidth" />
+    <attr format="dimension" name="textSpacing" />
+    <attr format="color" name="textColor" />
+    <attr format="integer" name="animatorDuration" />
+  </declare-styleable>
 </resources>
