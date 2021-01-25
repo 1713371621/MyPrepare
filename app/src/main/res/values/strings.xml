@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">MyPrepare</string>
-    <string name="view_size_image_view">view size image view</string>
-    <string name="view_size_button">view size button</string>
-    <string name="test_text">used of test</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="app_name">MyPrepare</string>
+  <string name="view_size_image_view">view size image view</string>
+  <string name="view_size_button">view size button</string>
+  <string name="test_text">used of test</string>
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

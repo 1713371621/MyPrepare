@@ -2,7 +2,6 @@ package com.example.myprepare.activity
 
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -21,13 +20,12 @@ class FragmentTestActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fragment_test)
     Log.d(TAG, "onCreate: ")
-    fragment_frame_layout.viewTreeObserver.addOnGlobalLayoutListener(object :
-      ViewTreeObserver.OnGlobalLayoutListener {
-      override fun onGlobalLayout() {
-        Log.d(TAG, "onGlobalLayout: ")
-      }
-  
-    })
+    fragment_frame_layout.viewTreeObserver.addOnGlobalLayoutListener {
+      Log.d(
+        TAG,
+        "onGlobalLayout: "
+      )
+    }
     
     val fragmentManager = supportFragmentManager
     val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()

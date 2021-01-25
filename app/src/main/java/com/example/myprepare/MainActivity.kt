@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myprepare.activity.*
 import com.example.myprepare.annotation_test.AnnotationTestActivity
+import com.example.myprepare.jet_pack.JetPackTestActivity
 import com.example.myprepare.module.RouterDetail
 import com.example.myprepare.plugin_and_hot_fix.PluginAndHotFixActivity
 import com.example.myprepare.recyclerview.MyRecyclerViewAdapter
@@ -113,7 +114,8 @@ class MainActivity : AppCompatActivity() {
     RouterDetail("HashMapTest", HashMapTestActivity::class.java),
     RouterDetail("ActivityTest", ActivityTestActivity::class.java),
     RouterDetail("SerializableTest", SerializableTestActivity::class.java),
-    RouterDetail("LeftAgeAnimation", LeftAgeAnimationActivity::class.java)
+    RouterDetail("LeftAgeAnimation", LeftAgeAnimationActivity::class.java),
+    RouterDetail("JetPackTest", JetPackTestActivity::class.java)
   )
   
   override fun onCreate(savedInstanceState: Bundle?) {
