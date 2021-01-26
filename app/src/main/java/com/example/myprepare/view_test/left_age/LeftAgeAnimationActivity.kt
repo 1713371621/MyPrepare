@@ -6,7 +6,7 @@ import com.example.myprepare.R
 import kotlinx.android.synthetic.main.activity_left_age_animation.*
 
 class LeftAgeAnimationActivity : AppCompatActivity() {
-  var number: Int = 8
+  var number: Int = 995
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_left_age_animation)

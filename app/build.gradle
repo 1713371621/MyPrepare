@@ -9,8 +9,8 @@ my {
 }
 
 android {
-  compileSdkVersion 29
-  buildToolsVersion "29.0.3"
+  compileSdkVersion 30
+  buildToolsVersion '30.0.3'
 
   dataBinding.enabled = true
   defaultConfig {
@@ -72,7 +72,7 @@ gradle.taskGraph.whenReady {
 
 dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar"])
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
   implementation 'androidx.core:core-ktx:1.3.2'
   implementation 'androidx.appcompat:appcompat:1.2.0'
   implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -119,15 +119,15 @@ dependencies {
 //  compileOnly 'com.android.tools.build:gradle:4.1.0'
 
   // coroutines
-  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
+  implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2-native-mt'
 
   // okhttp
 //  implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 
   // LeakCanary
   releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:2.5'
-  debugImplementation "com.squareup.leakcanary:leakcanary-android:2.5"
-  implementation "com.squareup.leakcanary:leakcanary-object-watcher-android:2.5"
+  debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.6'
+  implementation 'com.squareup.leakcanary:leakcanary-object-watcher-android:2.6'
 
   // lottie
   implementation 'com.airbnb.android:lottie:3.6.0'

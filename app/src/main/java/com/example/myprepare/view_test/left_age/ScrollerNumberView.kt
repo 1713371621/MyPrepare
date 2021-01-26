@@ -151,6 +151,7 @@ class ScrollerNumberView(context: Context, attrs: AttributeSet?) : View(context,
     stringBuilder.clear()
 
     val text = "天"
+    textPaint.textSize = 11f.dp
     textPaint.alpha = (PAINT_ALPHA * paintAlphaProgress).toInt()
     textPaint.getTextBounds(text, 0, text.length, textRect)
 
@@ -162,6 +163,8 @@ class ScrollerNumberView(context: Context, attrs: AttributeSet?) : View(context,
     )
     // 剩余宽度
     val residueWidth = width - textRect.width()
+
+    textPaint.textSize = 14f.dp
 
     var textWidth = 0
     var currentTextWidth = 0
