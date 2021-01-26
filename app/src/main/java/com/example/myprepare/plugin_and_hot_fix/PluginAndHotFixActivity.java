@@ -131,7 +131,7 @@ public class PluginAndHotFixActivity extends AppCompatActivity {
             null, null);
 
         // PathClassLoader
-        PathClassLoader pathClassLoader = new PathClassLoader(file.getPath(),null, null);
+        PathClassLoader pathClassLoader = new PathClassLoader(file.getPath(), null, null);
 
         try {
           // 获取到自己传入dex的classloader中的pathlist

@@ -8,14 +8,14 @@ import androidx.core.view.children
 import kotlin.math.max
 
 class TagLayout(context: Context, attrs: AttributeSet) : ViewGroup(context, attrs) {
-  
+
   private val childrenBounds: MutableList<Rect> = mutableListOf()
-  
+
   override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-    
+
     val widthMeasureSpecMode = MeasureSpec.getMode(widthMeasureSpec)
     val widthMeasureSpecSize = MeasureSpec.getSize(widthMeasureSpec)
-    
+
     var widthUsed = 0
     var heightUsed = 0
     var lineWidthUsed = 0
@@ -61,7 +61,7 @@ class TagLayout(context: Context, attrs: AttributeSet) : ViewGroup(context, attr
       }
       // 将结果保存
       child.measure(childWithMeasure, childHeightMeasure)*/
-      
+
       // 计算自己的selfWidth和selfHeight
       measureChildWithMargins(
         child,
@@ -70,7 +70,7 @@ class TagLayout(context: Context, attrs: AttributeSet) : ViewGroup(context, attr
         heightMeasureSpec,
         heightUsed
       )
-      
+
       if (lineWidthUsed + child.measuredWidth > widthMeasureSpecSize && widthMeasureSpecMode != MeasureSpec.UNSPECIFIED) {
         lineWidthUsed = 0
         heightUsed += lineMaxHeight
@@ -87,9 +87,9 @@ class TagLayout(context: Context, attrs: AttributeSet) : ViewGroup(context, attr
       if (index >= childrenBounds.size) {
         childrenBounds.add(Rect())
       }
-      
+
       val childBounds = childrenBounds[index]
-      
+
       // 设置子view的width和height
       childBounds.set(
         lineWidthUsed,
@@ -97,26 +97,26 @@ class TagLayout(context: Context, attrs: AttributeSet) : ViewGroup(context, attr
         lineWidthUsed + child.measuredWidth,
         heightUsed + child.measuredHeight
       )
-      
+
       lineWidthUsed += child.measuredWidth
       widthUsed = max(widthUsed, lineWidthUsed)
       lineMaxHeight = max(lineMaxHeight, child.measuredHeight)
     }
-    
+
     setMeasuredDimension(widthUsed, heightUsed)
   }
-  
+
   override fun generateLayoutParams(attrs: AttributeSet): LayoutParams {
     return MarginLayoutParams(context, attrs)
   }
-  
+
   override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
     for ((index, child) in children.withIndex()) {
       val childBounds = childrenBounds[index]
       child.layout(childBounds.left, childBounds.top, childBounds.right, childBounds.bottom)
     }
   }
-  
+
   override fun shouldDelayChildPressedState(): Boolean {
     return false
   }

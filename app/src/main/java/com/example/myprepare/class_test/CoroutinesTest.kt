@@ -1,12 +1,11 @@
 package com.example.myprepare.class_test
 
-import android.os.AsyncTask
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class CoroutinesTest {
-  
+
   fun startTest1() {
     println("time = ${System.currentTimeMillis()}")
     repeat(100_000) {
@@ -15,7 +14,7 @@ class CoroutinesTest {
         print(".")
       }
     }
-    
+
 //    while (true) {
 //    }
   }

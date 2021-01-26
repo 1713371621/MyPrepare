@@ -21,13 +21,13 @@ import com.example.myprepare.view_test.left_age.LeftAgeAnimationActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-  
+
   private lateinit var myAdapter: MyRecyclerViewAdapter
-  
+
   companion object {
-    
+
     private const val REQUEST_CODE = 1
-    
+
     private val PERMISSION: Array<String> = arrayOf(
       Manifest.permission.INTERNET,
       Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -35,9 +35,9 @@ class MainActivity : AppCompatActivity() {
       Manifest.permission.READ_EXTERNAL_STORAGE
     )
   }
-  
+
   private val missingPermissionList: MutableList<String> = ArrayList()
-  
+
   private fun checkPermission() {
     PERMISSION.forEach {
       ContextCompat.checkSelfPermission(this, it)
@@ -48,12 +48,12 @@ class MainActivity : AppCompatActivity() {
 //        Logger.d("checkPermission: has permission $it")
       }
     }
-    
+
     if (missingPermissionList.isNotEmpty()) {
       ActivityCompat.requestPermissions(this, PERMISSION, REQUEST_CODE)
     }
   }
-  
+
   override fun onRequestPermissionsResult(
     requestCode: Int,
     permissions: Array<out String>,
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 //    Logger.d(permissions)
 //    Logger.d("grantResults")
 //    Logger.d(grantResults)
-    
+
     if (requestCode == REQUEST_CODE) {
       for (i in permissions.indices) {
         if (grantResults[i] == PERMISSION_GRANTED) {
@@ -74,12 +74,12 @@ class MainActivity : AppCompatActivity() {
       }
     }
   }
-  
+
   override fun onResume() {
     super.onResume()
     checkPermission()
   }
-  
+
   private val routeDetailList: MutableList<RouterDetail> = mutableListOf(
     RouterDetail("RxJava3", RxJava3Activity::class.java),
     RouterDetail("ViewSize", ViewSizeActivity::class.java),
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
     RouterDetail("LeftAgeAnimation", LeftAgeAnimationActivity::class.java),
     RouterDetail("JetPackTest", JetPackTestActivity::class.java)
   )
-  
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
@@ -125,12 +125,12 @@ class MainActivity : AppCompatActivity() {
 //    Logger.d("start")
     initData()
     initView()
-    
+
     drawBadge()
   }
-  
+
   private fun initData() {
-    
+
     myAdapter = MyRecyclerViewAdapter(routeDetailList)
     myAdapter.setOnItemClickListener(object : MyRecyclerViewAdapter.OnItemClickListener {
       override fun onItemClick(title: String, position: Int) {
@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
       }
     })
   }
-  
+
   private fun initView() {
     my_recycler_view.adapter = myAdapter
     my_recycler_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
@@ -151,13 +151,13 @@ class MainActivity : AppCompatActivity() {
     )
     my_recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
       private var scrollY: Int = 0
-  
+
       override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
         scrollY += dy
 //        Logger.d("onScrolled: dy = $dy, scrollY = $scrollY")
       }
-  
+
       override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
         super.onScrollStateChanged(recyclerView, newState)
 //        Logger.d("recyclerView = $recyclerView, newState = $newState")

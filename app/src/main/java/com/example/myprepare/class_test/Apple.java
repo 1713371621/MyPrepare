@@ -1,6 +1,7 @@
 package com.example.myprepare.class_test;
 
 public class Apple {
+
   String color;
 
   public Apple(String color) {

@@ -9,19 +9,19 @@ import java.io.*
 
 
 class SerializableTestActivity : AppCompatActivity() {
-  
+
   companion object {
-    
+
     private const val TAG = "SerializableTestActivit"
   }
-  
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_serializable_test)
-    
+
     val serializableTestData = SerializableTestData("xiaoming", 12)
     //序列化过程
-    
+
     //序列化过程
     val file = File("sdcard/test.txt")
     val fileOutputStream = FileOutputStream(file)

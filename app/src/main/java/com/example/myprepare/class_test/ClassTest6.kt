@@ -4,7 +4,7 @@ fun main() {
 
 }
 
-class Outer: Person {
+class Outer : Person {
   inner class Inner {
     val outer = this@Outer
   }

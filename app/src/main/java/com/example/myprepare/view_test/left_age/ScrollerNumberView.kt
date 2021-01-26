@@ -4,14 +4,15 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Rect
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import com.example.myprepare.R
 import com.example.myprepare.dp
-import kotlin.collections.ArrayList
 
 class ScrollerNumberView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
 

@@ -6,9 +6,9 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitHelper {
-  
+
   private val gson = Gson()
-  
+
   fun createRetrofit(baseUrl: String): Retrofit {
     return Retrofit.Builder()
       .baseUrl(baseUrl)

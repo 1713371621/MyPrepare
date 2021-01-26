@@ -8,13 +8,13 @@ import android.content.Intent
 /**
  * An [IntentService] subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
- 
+
  * TODO: Customize class - update intent actions, extra parameters and static
  * helper methods.
- 
+
  */
 class MyIntentService : IntentService("MyIntentService") {
-  
+
   override fun onHandleIntent(intent: Intent?) {
     when (intent?.action) {
       ACTION_FOO -> {
@@ -29,32 +29,32 @@ class MyIntentService : IntentService("MyIntentService") {
       }
     }
   }
-  
+
   /**
    * Handle action Foo in the provided background thread with the provided
    * parameters.
    */
   private fun handleActionFoo(param1: String, param2: String) {
   }
-  
+
   /**
    * Handle action Baz in the provided background thread with the provided
    * parameters.
    */
   private fun handleActionBaz(param1: String, param2: String) {
   }
-  
+
   companion object {
-    
+
     // TODO: Rename actions, choose action names that describe tasks that this
 // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
     const val ACTION_FOO = "com.example.myprepare.action.FOO"
     const val ACTION_BAZ = "com.example.myprepare.action.BAZ"
-    
+
     // TODO: Rename parameters
     const val EXTRA_PARAM1 = "com.example.myprepare.extra.PARAM1"
     const val EXTRA_PARAM2 = "com.example.myprepare.extra.PARAM2"
-    
+
     /**
      * Starts this service to perform action Foo with the given parameters. If
      * the service is already performing a task this action will be queued.
@@ -71,7 +71,7 @@ class MyIntentService : IntentService("MyIntentService") {
       }
       context.startService(intent)
     }
-    
+
     /**
      * Starts this service to perform action Baz with the given parameters. If
      * the service is already performing a task this action will be queued.

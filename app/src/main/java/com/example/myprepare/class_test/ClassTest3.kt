@@ -1,7 +1,7 @@
 package com.example.myprepare.class_test
 
 class ClassTest3 {
-  
+
   fun haha(a: Int, b: Int, lamb: () -> Unit, lambTest: (c: Int, d: Int) -> Int) {
     println("start, a = $a, b = $b")
     lamb.invoke()

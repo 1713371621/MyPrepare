@@ -9,11 +9,11 @@ import com.example.myprepare.R
 import kotlinx.android.synthetic.main.activity_view.*
 
 class ViewActivity : AppCompatActivity() {
-  
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_view)
-    
+
     val dashBoardAnimation: ValueAnimator = ObjectAnimator.ofInt(dash_board_view, "index", 0, 101)
     dashBoardAnimation.interpolator = LinearInterpolator()
     dashBoardAnimation.duration = 5000

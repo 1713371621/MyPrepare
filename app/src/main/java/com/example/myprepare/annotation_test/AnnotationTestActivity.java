@@ -1,8 +1,8 @@
 package com.example.myprepare.annotation_test;
 
+import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import com.example.lib_annotation_test.Binding;
 import com.example.lib_annotations.BindView;
 import com.example.myprepare.R;

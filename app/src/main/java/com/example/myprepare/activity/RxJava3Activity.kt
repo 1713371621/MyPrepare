@@ -14,15 +14,15 @@ import org.reactivestreams.Subscription
 import java.util.concurrent.TimeUnit
 
 class RxJava3Activity : AppCompatActivity() {
-  
+
   companion object {
-    
+
     private const val TAG = "RxJava3Activity"
   }
-  
+
   private var subscription: Subscription? = null
   private var disposable: Disposable? = null
-  
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_rxjava3)
@@ -49,7 +49,7 @@ class RxJava3Activity : AppCompatActivity() {
       override fun onError(e: Throwable?) {
       }
     })*/
-    
+
     Observable.interval(0, 1, TimeUnit.SECONDS)
       .subscribeOn(Schedulers.single())
       .observeOn(AndroidSchedulers.mainThread())
@@ -58,18 +58,18 @@ class RxJava3Activity : AppCompatActivity() {
         override fun onSubscribe(d: Disposable?) {
           disposable = d
         }
-  
+
         override fun onNext(t: Long?) {
           rxjava3text.text = t.toString()
         }
-  
+
         override fun onError(e: Throwable?) {
         }
-  
+
         override fun onComplete() {
         }
       })
-    
+
     Flowable.create(object : FlowableOnSubscribe<Int> {
       override fun subscribe(emitter: FlowableEmitter<Int>?) {
         Log.d(TAG, "subscribe: first requested = ${emitter?.requested()}")
@@ -87,7 +87,7 @@ class RxJava3Activity : AppCompatActivity() {
         }
         emitter?.onComplete()
       }
-  
+
     }, BackpressureStrategy.ERROR)
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
@@ -98,26 +98,26 @@ class RxJava3Activity : AppCompatActivity() {
           subscription = s
           subscription?.request(2)
         }
-  
+
         override fun onNext(t: Int?) {
           Log.d(TAG, "onNext: $t")
           subscription?.request(1)
           subscription?.request(1)
         }
-  
+
         override fun onError(t: Throwable?) {
           t?.printStackTrace()
         }
-  
+
         override fun onComplete() {
           Log.d(TAG, "onComplete: ")
           subscription?.cancel()
         }
-  
+
       })
     Log.d(TAG, "onCreate: end!")
   }
-  
+
   override fun onDestroy() {
     subscription?.cancel()
     disposable?.dispose()

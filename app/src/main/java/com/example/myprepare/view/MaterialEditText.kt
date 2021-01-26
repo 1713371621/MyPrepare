@@ -12,19 +12,19 @@ import com.example.myprepare.dp
 
 class MaterialEditText(context: Context, attrs: AttributeSet) :
   androidx.appcompat.widget.AppCompatEditText(context, attrs) {
-  
+
   companion object {
-    
+
     val TEXT_SIZE: Float = 12.dp
     val TEXT_MARGIN: Float = 8.dp
     val HORIZONTAL_OFFSET = 5.dp
     val VERTICAL_OFFSET = 23.dp
   }
-  
+
   private val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
   private var fontMetrics: Paint.FontMetrics = Paint.FontMetrics()
   private var floatingLabelShown = false
-  
+
   var useFloatingLabel: Boolean = false
     set(value) {
       if (field != value) {
@@ -45,22 +45,22 @@ class MaterialEditText(context: Context, attrs: AttributeSet) :
           )
         }
       }
-      
+
     }
-  
+
   var floatingLabelFraction: Float = 0f
     set(value) {
       field = value
       invalidate()
     }
-  
+
   private val animator: ValueAnimator by lazy {
     ObjectAnimator.ofFloat(this, "floatingLabelFraction", 0f, 1f)
   }
-  
+
   init {
     paint.textSize = TEXT_SIZE
-    
+
     // val typedArray: TypedArray = context.obtainStyledAttributes(attrs, intArrayOf(R.attr.useFloatLabel))
     // useFloatingLabel = typedArray.getBoolean(0, true)
     val typedArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.MaterialEditText)
@@ -68,9 +68,9 @@ class MaterialEditText(context: Context, attrs: AttributeSet) :
     typedArray.recycle()
     getPaint().getFontMetrics(fontMetrics)
   }
-  
+
   override fun onTextChanged(text: CharSequence?, start: Int, lengthBefore: Int, lengthAfter: Int) {
-    
+
     if (floatingLabelShown && text.isNullOrEmpty()) {
       floatingLabelShown = false
       animator.reverse()
@@ -79,10 +79,10 @@ class MaterialEditText(context: Context, attrs: AttributeSet) :
       animator.start()
     }
   }
-  
+
   override fun onDraw(canvas: Canvas) {
     super.onDraw(canvas)
-    
+
     paint.alpha = (floatingLabelFraction * 0xff).toInt()
     val currentVerticalValue: Float =
       VERTICAL_OFFSET + (fontMetrics.bottom - fontMetrics.top) * (1 - floatingLabelFraction)

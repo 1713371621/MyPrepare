@@ -14,18 +14,18 @@ class ProvinceView(context: Context, attrs: AttributeSet?) : View(context, attrs
   companion object {
 
     val provinces: List<String> = listOf(
-        "北京市",
-        "天津市",
-        "上海市",
-        "南京市",
-        "哈尔滨市",
-        "辽宁省",
-        "台湾省",
-        "海南市",
-        "河南市",
-        "湖北省",
-        "香港特别行政区",
-        "澳门特别行政区"
+      "北京市",
+      "天津市",
+      "上海市",
+      "南京市",
+      "哈尔滨市",
+      "辽宁省",
+      "台湾省",
+      "海南市",
+      "河南市",
+      "湖北省",
+      "香港特别行政区",
+      "澳门特别行政区"
     )
   }
 

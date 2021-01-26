@@ -9,13 +9,13 @@ class HelloImpl : HelloInterface {
 //    }
 //
 //  }
-  
+
   override fun doSomething(operation: String, name: String) {
 //    val method: Method = HelloImpl::class.java.getDeclaredMethod("doSomething", String::class.java)
 //    invocationHandler.invoke(this, method, arrayOf(operation, name))
   }
-  
+
   override fun myDeviceNotFound() {
-  
+
   }
 }

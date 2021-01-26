@@ -17,19 +17,19 @@ class AnimationActivity2 : AppCompatActivity() {
     setContentView(R.layout.activity_animation2)
 
     val provinceAnimator: ObjectAnimator = ObjectAnimator.ofObject(
-        animation2_province_view,
-        "province",
-        ProvinceEvaluator(),
-        "台湾省"
+      animation2_province_view,
+      "province",
+      ProvinceEvaluator(),
+      "台湾省"
     )
     provinceAnimator.startDelay = 1000
     provinceAnimator.duration = 5000
     provinceAnimator.start()
 
     animation2_avatar_view.animate()
-        .translationX(200.dp)
-        .setStartDelay(1000)
-        .withLayer()
+      .translationX(200.dp)
+      .setStartDelay(1000)
+      .withLayer()
   }
 
   class ProvinceEvaluator : TypeEvaluator<String> {
@@ -38,7 +38,8 @@ class AnimationActivity2 : AppCompatActivity() {
       val startIndex: Int = ProvinceView.provinces.indexOf(startValue)
       val endIndex: Int = ProvinceView.provinces.indexOf(endValue)
 
-      val currentIndex: Int = startIndex + ((abs(endIndex - startIndex) % ProvinceView.provinces.size) * fraction).toInt()
+      val currentIndex: Int =
+        startIndex + ((abs(endIndex - startIndex) % ProvinceView.provinces.size) * fraction).toInt()
 
       return ProvinceView.provinces[currentIndex % ProvinceView.provinces.size]
     }

@@ -24,58 +24,58 @@ import kotlin.math.max
 import kotlin.math.min
 
 class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, attrs) {
-  
+
   companion object {
-    
+
     private const val TAG = "ScalableImageView"
     private const val EXTRA_SCALE_FACTOR = 3f
   }
-  
+
   private val IMAGE_SIZE: Int = 250.dp.toInt()
-  
+
   private val bitmap: Bitmap = getAvatar(resources, IMAGE_SIZE)
   private val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
-  
+
   private var offsetX: Float = 0f
   private var offsetY: Float = 0f
   private var originalOffsetX: Float = 0f
   private var originalOffsetY: Float = 0f
-  
+
   private val overScroller: OverScroller = OverScroller(context)
-  
+
   private var smallScale: Float = 1f
   private var bigScale: Float = 1f
-  
+
   private var currentScale: Float = 1f
     set(value) {
       field = value
       invalidate()
     }
-  
+
   private val myGestureDetectorListener = MyGestureDetectorListener()
   private val myFlingRunnable = MyFlingRunnable()
   private val myScaleGestureDetectorListener = MyScaleGestureDetectorListener()
-  
+
   private val scaleAnimator: ValueAnimator =
     ObjectAnimator.ofFloat(this, "currentScale", smallScale, bigScale)
-  
+
   private val gestureDetectorCompat: GestureDetectorCompat =
     GestureDetectorCompat(context, myGestureDetectorListener)
   private val scaleGestureDetector: ScaleGestureDetector =
     ScaleGestureDetector(context, myScaleGestureDetectorListener)
 
   init {
-  
+
     paint.style = Paint.Style.STROKE
     paint.strokeWidth = 20.dp
   }
-  
+
   override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
     super.onSizeChanged(w, h, oldw, oldh)
-    
+
     originalOffsetX = (width - IMAGE_SIZE) / 2f
     originalOffsetY = (height - IMAGE_SIZE) / 2f
-    
+
     if ((bitmap.width / bitmap.height.toFloat()) > (width / height.toFloat())) {
       smallScale = width / bitmap.width.toFloat()
       bigScale = (height / bitmap.height.toFloat() * EXTRA_SCALE_FACTOR).toFloat()
@@ -83,20 +83,20 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
       smallScale = height / bitmap.height.toFloat()
       bigScale = (width / bitmap.width.toFloat() * EXTRA_SCALE_FACTOR).toFloat()
     }
-    
+
     currentScale = smallScale
     scaleAnimator.setFloatValues(smallScale, bigScale)
   }
-  
+
   override fun onDraw(canvas: Canvas) {
     super.onDraw(canvas)
-    
+
     val scaleFraction: Float = (currentScale - smallScale) / (bigScale - smallScale)
     canvas.translate(offsetX * scaleFraction, offsetY * scaleFraction)
     canvas.scale(currentScale, currentScale, width / 2f, height / 2f)
     canvas.drawBitmap(bitmap, originalOffsetX, originalOffsetY, paint)
   }
-  
+
   override fun onTouchEvent(event: MotionEvent): Boolean {
     scaleGestureDetector.onTouchEvent(event)
     if (!scaleGestureDetector.isInProgress) {
@@ -104,7 +104,7 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
     }
     return true
   }
-  
+
   private fun getAvatar(res: Resources, width: Int): Bitmap {
     val id: Int = R.drawable.batman
     val options: BitmapFactory.Options = BitmapFactory.Options()
@@ -115,25 +115,25 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
     options.inTargetDensity = width
     return BitmapFactory.decodeResource(res, id, options)
   }
-  
+
   private fun fixOffset() {
     val absoluteDistanceX = abs((bitmap.width * bigScale - width) / 2f)
     offsetX = min(offsetX, absoluteDistanceX)
     offsetX = max(offsetX, -absoluteDistanceX)
-    
+
     val absoluteDistanceY = abs((bitmap.height * bigScale - height) / 2f)
     offsetY = min(offsetY, absoluteDistanceY)
     offsetY = max(offsetY, -absoluteDistanceY)
   }
-  
+
   inner class MyGestureDetectorListener : GestureDetector.SimpleOnGestureListener() {
-    
+
     // GesturedDetector.OnGestureListener
     override fun onDown(e: MotionEvent?): Boolean {
       Log.d(TAG, "onDown: ")
       return true
     }
-    
+
     override fun onScroll(
       e1: MotionEvent?,
       e2: MotionEvent?,
@@ -150,7 +150,7 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
 //      }
       return false
     }
-    
+
     override fun onFling(
       e1: MotionEvent?,
       e2: MotionEvent?,
@@ -161,10 +161,10 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
 
 //      if (big) {
       val scale = bigScale
-      
+
       val absoluteDistanceX = abs((bitmap.width * scale - width) / 2f)
       val absoluteDistanceY = abs((bitmap.height * scale - height) / 2f)
-      
+
       overScroller.fling(
         offsetX.toInt(),
         offsetY.toInt(),
@@ -181,9 +181,9 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
 //      }
       return false
     }
-    
+
     // doubleTapListener
-    
+
     override fun onDoubleTap(e: MotionEvent): Boolean {
       Log.d(TAG, "onDoubleTap: offsetX = $offsetX, offsetY = $offsetY")
       if (currentScale < smallScale + (bigScale - smallScale) * 0.4f) {
@@ -200,9 +200,9 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
       return true
     }
   }
-  
+
   inner class MyScaleGestureDetectorListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
-    
+
     override fun onScale(detector: ScaleGestureDetector): Boolean {
       Log.d(TAG, "onScale: detector.scaleFactor = ${detector.scaleFactor}")
       val tempCurrentScale = currentScale * detector.scaleFactor
@@ -213,7 +213,7 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
         return true
       }
     }
-    
+
     override fun onScaleBegin(detector: ScaleGestureDetector): Boolean {
       Log.d(TAG, "onScaleBegin: offsetX = $offsetX, offsetY = $offsetY")
       offsetX += (width / 2f - detector.focusX) * detector.scaleFactor
@@ -221,14 +221,14 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
 //      fixOffset()
       return true
     }
-    
+
     override fun onScaleEnd(detector: ScaleGestureDetector) {
       Log.d(TAG, "onScaleEnd: offsetX = $offsetX, offsetY = $offsetY")
     }
   }
-  
+
   inner class MyFlingRunnable : Runnable {
-    
+
     // Runnable
     override fun run() {
       if (overScroller.computeScrollOffset()) {

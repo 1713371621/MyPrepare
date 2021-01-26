@@ -35,10 +35,10 @@ class CameraView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
   private val bitmap: Bitmap = getAvatar(bitmapSize.toInt())
   private val clipped: Path = Path().apply {
     addCircle(
-        bitmapPadding + bitmapSize / 2f,
-        bitmapPadding + bitmapSize / 2f,
-        bitmapSize / 2f,
-        Path.Direction.CW
+      bitmapPadding + bitmapSize / 2f,
+      bitmapPadding + bitmapSize / 2f,
+      bitmapSize / 2f,
+      Path.Direction.CW
     )
   }
 
@@ -56,8 +56,8 @@ class CameraView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
     // 上面的
     canvas.save()
     canvas.translate(
-        bitmapPadding + bitmapSize / 2f,
-        bitmapPadding + bitmapSize / 2f
+      bitmapPadding + bitmapSize / 2f,
+      bitmapPadding + bitmapSize / 2f
     )
     canvas.rotate(-flipRotation)
     // camera操作
@@ -67,15 +67,15 @@ class CameraView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
     camera.restore()
     // 剪裁
     canvas.clipRect(
-        (-bitmapSize * sqrt(2.toDouble()) / 2f).toFloat(),
-        (-bitmapSize * sqrt(2.toDouble()) / 2f).toFloat(),
-        (bitmapSize * sqrt(2.toDouble()) / 2f).toFloat(),
-        0f
+      (-bitmapSize * sqrt(2.toDouble()) / 2f).toFloat(),
+      (-bitmapSize * sqrt(2.toDouble()) / 2f).toFloat(),
+      (bitmapSize * sqrt(2.toDouble()) / 2f).toFloat(),
+      0f
     )
     canvas.rotate(flipRotation)
     canvas.translate(
-        -(bitmapPadding + bitmapSize / 2f),
-        -(bitmapPadding + bitmapSize / 2f)
+      -(bitmapPadding + bitmapSize / 2f),
+      -(bitmapPadding + bitmapSize / 2f)
     )
     canvas.drawBitmap(bitmap, bitmapPadding, bitmapPadding, paint)
     canvas.restore()
@@ -83,8 +83,8 @@ class CameraView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
     // 画条线
     canvas.save()
     canvas.translate(
-        bitmapPadding + bitmapSize / 2f,
-        bitmapPadding + bitmapSize / 2f
+      bitmapPadding + bitmapSize / 2f,
+      bitmapPadding + bitmapSize / 2f
     )
     canvas.rotate(-flipRotation)
     // 剪裁
@@ -94,8 +94,8 @@ class CameraView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
     canvas.drawLine(-bitmapSize, 0f, bitmapSize, 0f, paint)
     canvas.rotate(flipRotation)
     canvas.translate(
-        -(bitmapPadding + bitmapSize / 2f),
-        -(bitmapPadding + bitmapSize / 2f)
+      -(bitmapPadding + bitmapSize / 2f),
+      -(bitmapPadding + bitmapSize / 2f)
     )
     canvas.restore()
 
@@ -105,8 +105,8 @@ class CameraView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
       // ...
       // canvas.restore
       canvas.translate(
-          bitmapPadding + bitmapSize / 2f,
-          bitmapPadding + bitmapSize / 2f
+        bitmapPadding + bitmapSize / 2f,
+        bitmapPadding + bitmapSize / 2f
       )
       canvas.rotate(-flipRotation)
       // camera操作
@@ -116,15 +116,15 @@ class CameraView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
       camera.restore()
       // 剪裁
       canvas.clipRect(
-          (-bitmapSize * 2.toDouble().pow(0.5) / 2f).toFloat(),
-          0f,
-          (bitmapSize * 2.toDouble().pow(0.5) / 2f).toFloat(),
-          (bitmapSize * 2.toDouble().pow(0.5) / 2f).toFloat()
+        (-bitmapSize * 2.toDouble().pow(0.5) / 2f).toFloat(),
+        0f,
+        (bitmapSize * 2.toDouble().pow(0.5) / 2f).toFloat(),
+        (bitmapSize * 2.toDouble().pow(0.5) / 2f).toFloat()
       )
       canvas.rotate(flipRotation)
       canvas.translate(
-          -(bitmapPadding + bitmapSize / 2f),
-          -(bitmapPadding + bitmapSize / 2f)
+        -(bitmapPadding + bitmapSize / 2f),
+        -(bitmapPadding + bitmapSize / 2f)
       )
       canvas.drawBitmap(bitmap, bitmapPadding, bitmapPadding, paint)
     }
