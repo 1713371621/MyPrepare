@@ -13,8 +13,8 @@ class My implements Plugin<Project> {
       println("age = ${extension.age}, name = ${extension.name}")
     }
 
-    def transform = new MyTransform()
-    def baseExtension = target.extensions.getByType(BaseExtension)
-    baseExtension.registerTransform(transform)
+//    def transform = new MyTransform()
+//    def baseExtension = target.extensions.getByType(BaseExtension)
+//    baseExtension.registerTransform(transform)
   }
 }

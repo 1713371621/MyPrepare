@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.example.myprepare">
+    package="com.example.myprepare">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-      android:allowBackup="false"
-      android:icon="@mipmap/ic_launcher"
-      android:label="@string/app_name"
-      android:name=".MyApplication"
-      android:roundIcon="@mipmap/ic_launcher_round"
-      android:supportsRtl="true"
-      android:theme="@style/AppTheme">
-        <activity android:name=".jet_pack.JetPackTestActivity"></activity>
+        android:name=".MyApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".compose.ComposeMainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".jet_pack.JetPackTestActivity" />
         <activity android:name=".view_test.left_age.LeftAgeAnimationActivity" />
         <activity android:name=".activity.SerializableTestActivity" />
         <activity android:name=".activity.ActivityTestActivity" />
@@ -46,30 +60,28 @@
         <activity android:name=".activity.EditTextActivity" />
         <activity android:name=".view_test.ViewSizeActivity" />
         <activity
-          android:launchMode="singleTask"
-          android:name=".activity.RxJava3Activity" />
+            android:name=".activity.RxJava3Activity"
+            android:launchMode="singleTask" />
         <activity
-          android:name=".MainActivity"
-          android:theme="@style/AppTheme.NoActionBar">
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
         </activity>
 
         <service
-          android:name=".service.MyService"
-          android:enabled="true"
-          android:exported="true" />
+            android:name=".service.MyService"
+            android:enabled="true"
+            android:exported="false" />
         <service
-          android:name=".service.MyIntentService"
-          android:exported="false" />
+            android:name=".service.MyIntentService"
+            android:exported="false" />
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

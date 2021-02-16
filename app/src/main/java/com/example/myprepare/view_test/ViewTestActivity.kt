@@ -5,8 +5,8 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewTreeObserver
+import android.widget.TextView
 import com.example.myprepare.R
-import kotlinx.android.synthetic.main.activity_view_test.*
 import kotlin.concurrent.thread
 
 class ViewTestActivity : Activity() {
@@ -22,29 +22,34 @@ class ViewTestActivity : Activity() {
 
   val globalLayoutListener = object : ViewTreeObserver.OnGlobalLayoutListener {
     override fun onGlobalLayout() {
-      Log.d(TAG, "view_test_text_view width: ${view_test_text_view.width}")
-      Log.d(TAG, "view_test_text_view height: ${view_test_text_view.height}")
+      Log.d(TAG, "textView width: ${textView.width}")
+      Log.d(TAG, "textView height: ${textView.height}")
     }
 
   }
 
+  lateinit var textView: TextView
+  
   @SuppressLint("SetTextI18n")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_view_test)
-    view_test_text_view.text = "??"
+    
+    textView = findViewById(R.id.view_test_text_view)
+    
+    textView.text = "??"
 
     thread {
-      view_test_text_view.text = "哈哈你崩给我看啊"
-      view_test_text_view.text = "哈哈你崩给我看啊1"
-      view_test_text_view.text = "哈哈你崩给我看啊2"
-      view_test_text_view.text = "哈哈你崩给我看啊3"
-      view_test_text_view.text = "哈哈你崩给我看啊4"
-      view_test_text_view.text = "哈哈你崩给我看啊5"
-      view_test_text_view.text = "哈哈你崩给我看啊6"
-      view_test_text_view.text = "哈哈你崩给我看啊7"
-      view_test_text_view.text = "哈哈你崩给我看啊8"
-      view_test_text_view.text = "哈哈你崩给我看啊${Thread.currentThread().name}"
+      textView.text = "哈哈你崩给我看啊"
+      textView.text = "哈哈你崩给我看啊1"
+      textView.text = "哈哈你崩给我看啊2"
+      textView.text = "哈哈你崩给我看啊3"
+      textView.text = "哈哈你崩给我看啊4"
+      textView.text = "哈哈你崩给我看啊5"
+      textView.text = "哈哈你崩给我看啊6"
+      textView.text = "哈哈你崩给我看啊7"
+      textView.text = "哈哈你崩给我看啊8"
+      textView.text = "哈哈你崩给我看啊${Thread.currentThread().name}"
 
       /*Looper.prepare()
       val button = Button(this)
@@ -63,17 +68,17 @@ class ViewTestActivity : Activity() {
   
         SystemClock.sleep(1000)
         val str = i.toString()
-        view_test_text_view.text = "我搞起$str"
+        textView.text = "我搞起$str"
         i--
       }*/
     }
 
-    view_test_text_view.viewTreeObserver.addOnGlobalLayoutListener(globalLayoutListener)
+    textView.viewTreeObserver.addOnGlobalLayoutListener(globalLayoutListener)
     Log.d(TAG, "onCreate: end")
   }
 
   override fun onDestroy() {
-    view_test_text_view.viewTreeObserver.removeOnGlobalLayoutListener(globalLayoutListener)
+    textView.viewTreeObserver.removeOnGlobalLayoutListener(globalLayoutListener)
     super.onDestroy()
   }
 }

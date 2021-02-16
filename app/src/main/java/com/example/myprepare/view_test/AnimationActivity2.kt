@@ -6,8 +6,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myprepare.R
 import com.example.myprepare.dp
+import com.example.myprepare.view.AvatarView
 import com.example.myprepare.view.ProvinceView
-import kotlinx.android.synthetic.main.activity_animation2.*
 import kotlin.math.abs
 
 class AnimationActivity2 : AppCompatActivity() {
@@ -16,8 +16,10 @@ class AnimationActivity2 : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_animation2)
 
+    val provinceView: ProvinceView = findViewById(R.id.animation2_province_view)
+
     val provinceAnimator: ObjectAnimator = ObjectAnimator.ofObject(
-      animation2_province_view,
+      provinceView,
       "province",
       ProvinceEvaluator(),
       "台湾省"
@@ -26,7 +28,9 @@ class AnimationActivity2 : AppCompatActivity() {
     provinceAnimator.duration = 5000
     provinceAnimator.start()
 
-    animation2_avatar_view.animate()
+    val avatarView: AvatarView = findViewById(R.id.avatar_view)
+
+    avatarView.animate()
       .translationX(200.dp)
       .setStartDelay(1000)
       .withLayer()

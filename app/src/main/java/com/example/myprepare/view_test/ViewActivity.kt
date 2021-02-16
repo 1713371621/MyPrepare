@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myprepare.R
-import kotlinx.android.synthetic.main.activity_view.*
+import com.example.myprepare.view.DashBoardView
 
 class ViewActivity : AppCompatActivity() {
 
@@ -14,7 +14,9 @@ class ViewActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_view)
 
-    val dashBoardAnimation: ValueAnimator = ObjectAnimator.ofInt(dash_board_view, "index", 0, 101)
+    val dashBoardView: DashBoardView = findViewById(R.id.dash_board_view)
+
+    val dashBoardAnimation: ValueAnimator = ObjectAnimator.ofInt(dashBoardView, "index", 0, 101)
     dashBoardAnimation.interpolator = LinearInterpolator()
     dashBoardAnimation.duration = 5000
     dashBoardAnimation.repeatCount = ValueAnimator.INFINITE

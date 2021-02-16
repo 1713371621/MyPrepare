@@ -3,10 +3,10 @@ package com.example.myprepare.activity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myprepare.R
-import kotlinx.android.synthetic.main.activity_edit_text.*
 
 class EditTextActivity : AppCompatActivity() {
 
@@ -17,8 +17,10 @@ class EditTextActivity : AppCompatActivity() {
   }
 
   private fun initView() {
-    edit_text_text_2.imeOptions = EditorInfo.IME_ACTION_NEXT
-    edit_text_text_1.setOnEditorActionListener(object : TextView.OnEditorActionListener {
+    val editText1: EditText = findViewById(R.id.edit_text_text_1)
+    val editText2: EditText = findViewById(R.id.edit_text_text_2)
+    editText2.imeOptions = EditorInfo.IME_ACTION_NEXT
+    editText1.setOnEditorActionListener(object : TextView.OnEditorActionListener {
       override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
 //        Logger.d("actionId = $actionId, event = $event")
         return true

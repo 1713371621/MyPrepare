@@ -2,7 +2,7 @@ package com.example.plugin
 
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
-import com.android.utils.FileUtils
+//import com.android.utils.FileUtils
 
 class MyTransform extends Transform {
 
@@ -35,13 +35,13 @@ class MyTransform extends Transform {
       it.jarInputs.each {
         File dest = outputProvider.getContentLocation(it.name, it.contentTypes, it.scopes, Format.JAR)
         println("jar: file = \"${it.file}\", dest = \"${dest.getPath()}\"")
-        FileUtils.copyFile(it.file, dest)
+//        FileUtils.copyFile(it.file, dest)
       }
 
       it.directoryInputs.each {
         File dest = outputProvider.getContentLocation(it.name, it.contentTypes, it.scopes, Format.DIRECTORY)
         println("directory: file = \"${it.file}\", dest = \"${dest.getPath()}\"")
-        FileUtils.copyDirectory(it.file, dest)
+//        FileUtils.copyDirectory(it.file, dest)
       }
     }
 

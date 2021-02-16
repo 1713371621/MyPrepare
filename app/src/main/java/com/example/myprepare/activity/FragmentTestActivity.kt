@@ -2,12 +2,12 @@ package com.example.myprepare.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.myprepare.R
 import com.example.myprepare.fragment.TestFragment
-import kotlinx.android.synthetic.main.activity_fragment_test.*
 
 class FragmentTestActivity : AppCompatActivity() {
 
@@ -20,7 +20,8 @@ class FragmentTestActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_fragment_test)
     Log.d(TAG, "onCreate: ")
-    fragment_frame_layout.viewTreeObserver.addOnGlobalLayoutListener {
+    val frameLayout: FrameLayout = findViewById(R.id.fragment_frame_layout)
+    frameLayout.viewTreeObserver.addOnGlobalLayoutListener {
       Log.d(
         TAG,
         "onGlobalLayout: "

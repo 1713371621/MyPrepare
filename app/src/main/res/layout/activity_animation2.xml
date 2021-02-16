@@ -7,8 +7,7 @@
   tools:context=".view_test.AnimationActivity2">
 
   <com.example.myprepare.view.AvatarView
-    android:id="@+id/animation2_avatar_view"
-    android:layout_width="match_parent"
+      android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintTop_toTopOf="parent" />

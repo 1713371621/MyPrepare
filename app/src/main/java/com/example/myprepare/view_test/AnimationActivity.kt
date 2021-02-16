@@ -4,10 +4,13 @@ import android.animation.*
 import android.graphics.PointF
 import android.os.Bundle
 import android.view.animation.AnticipateOvershootInterpolator
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myprepare.R
 import com.example.myprepare.dp
-import kotlinx.android.synthetic.main.activity_animation.*
+import com.example.myprepare.view.CameraView
+import com.example.myprepare.view.CircleView
+import com.example.myprepare.view.PointFView
 
 class AnimationActivity : AppCompatActivity() {
 
@@ -24,7 +27,9 @@ class AnimationActivity : AppCompatActivity() {
         .rotation(30f)
         .startDelay = 1000*/
 
-    val animator: ValueAnimator = ObjectAnimator.ofFloat(animation_circle_view, "radius", 10.dp)
+    val circleView: CircleView = findViewById(R.id.animation_circle_view)
+
+    val animator: ValueAnimator = ObjectAnimator.ofFloat(circleView, "radius", 10.dp)
     animator.startDelay = 1000
     animator.interpolator = AnticipateOvershootInterpolator()
     animator.repeatMode = ValueAnimator.REVERSE
@@ -54,8 +59,10 @@ class AnimationActivity : AppCompatActivity() {
     val bottomFlipHolder = PropertyValuesHolder.ofFloat("bottomFlip", 40f)
     val flipRotationHolder = PropertyValuesHolder.ofFloat("flipRotation", -120f)
 
+    val cameraView: CameraView = findViewById(R.id.animation_camera_view)
+
     val holderAnimator = ObjectAnimator.ofPropertyValuesHolder(
-      animation_camera_view,
+      cameraView,
       topFlipHolder,
       bottomFlipHolder,
       flipRotationHolder
@@ -72,18 +79,22 @@ class AnimationActivity : AppCompatActivity() {
     val keyframe3: Keyframe = Keyframe.ofFloat(0.8f, 0.6f * length)
     val keyframe4: Keyframe = Keyframe.ofFloat(1f, length)
 
+    val imageView: ImageView = findViewById(R.id.animation_image_view)
+
     val keyframesHolder =
       PropertyValuesHolder.ofKeyframe("translationX", keyframe1, keyframe2, keyframe3, keyframe4)
-    val imageAnimator = ObjectAnimator.ofPropertyValuesHolder(animation_image_view, keyframesHolder)
+    val imageAnimator = ObjectAnimator.ofPropertyValuesHolder(imageView, keyframesHolder)
     imageAnimator.startDelay = 1000
     imageAnimator.duration = 1000
     imageAnimator.repeatCount = ValueAnimator.INFINITE
     imageAnimator.repeatMode = ValueAnimator.REVERSE
     imageAnimator.start()
 
+    val point: PointFView = findViewById(R.id.animation_point_f)
+
     // 点的动画
     val pointFAnimator = ObjectAnimator.ofObject(
-      animation_point_f,
+      point,
       "point",
       PointFEvaluator(),
       PointF(100.dp, 300.dp)

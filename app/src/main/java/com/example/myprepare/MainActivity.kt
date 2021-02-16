@@ -18,11 +18,11 @@ import com.example.myprepare.plugin_and_hot_fix.PluginAndHotFixActivity
 import com.example.myprepare.recyclerview.MyRecyclerViewAdapter
 import com.example.myprepare.view_test.*
 import com.example.myprepare.view_test.left_age.LeftAgeAnimationActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
   private lateinit var myAdapter: MyRecyclerViewAdapter
+  private lateinit var recyclerView: RecyclerView
 
   companion object {
 
@@ -141,15 +141,16 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun initView() {
-    my_recycler_view.adapter = myAdapter
-    my_recycler_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-    my_recycler_view.addItemDecoration(
+    recyclerView = findViewById(R.id.my_recycler_view)
+    recyclerView.adapter = myAdapter
+    recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+    recyclerView.addItemDecoration(
       DividerItemDecoration(
         this,
         DividerItemDecoration.VERTICAL
       )
     )
-    my_recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+    recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
       private var scrollY: Int = 0
 
       override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

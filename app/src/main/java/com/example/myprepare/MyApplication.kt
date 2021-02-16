@@ -1,22 +1,20 @@
 package com.example.myprepare
 
+import android.app.Application
 import android.content.Context
-import android.os.Bundle
-import android.os.PersistableBundle
 import android.os.Process
-import androidx.appcompat.app.AppCompatActivity
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
-import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileReader
 
-@AndroidEntryPoint
-class MyApplication : AppCompatActivity() {
+@HiltAndroidApp
+class MyApplication : Application() {
 
   companion object {
 
@@ -52,8 +50,8 @@ class MyApplication : AppCompatActivity() {
     currentApplication = this
   }
 
-  override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-    super.onCreate(savedInstanceState, persistentState)
+  override fun onCreate() {
+    super.onCreate()
     initLogger()
     val pid: Int = Process.myPid()
     //    Logger.d("pid = $pid, progressName = $progressName")
@@ -69,7 +67,7 @@ class MyApplication : AppCompatActivity() {
 
     Logger.addLogAdapter(object : AndroidLogAdapter(formatStrategy) {
       override fun isLoggable(priority: Int, tag: String?): Boolean {
-        return BuildConfig.DEBUG
+        return false
       }
     })
   }

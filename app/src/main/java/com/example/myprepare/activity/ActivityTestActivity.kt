@@ -1,11 +1,12 @@
 package com.example.myprepare.activity
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myprepare.R
 import com.example.myprepare.generic_test.Apple
-import kotlinx.android.synthetic.main.activity_test.*
 import java.lang.ref.WeakReference
 
 class ActivityTestActivity : AppCompatActivity() {
@@ -33,7 +34,8 @@ class ActivityTestActivity : AppCompatActivity() {
     val weakReference: WeakReference<Apple> = WeakReference<Apple>(Apple("fuck"));
     System.gc()
 
-    activity_test_button.setOnClickListener {
+    val button: Button = findViewById(R.id.activity_test_button)
+    button.setOnClickListener {
       if (weakReference.get() == null) {
         Log.d(TAG, "addTouchListener: is empty")
       } else {
@@ -75,9 +77,9 @@ class ActivityTestActivity : AppCompatActivity() {
     super.onRestoreInstanceState(savedInstanceState)
   }
 
-  override fun onSaveInstanceState(outState: Bundle) {
+  override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
     Log.d(TAG, "onSaveInstanceState: ")
     outState.putString("message", "老八秘制小汉堡")
-    super.onSaveInstanceState(outState)
+    super.onSaveInstanceState(outState, outPersistentState)
   }
 }

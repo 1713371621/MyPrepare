@@ -2,13 +2,13 @@ package com.example.myprepare.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myprepare.R
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.*
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_rxjava3.*
 import org.reactivestreams.Subscriber
 import org.reactivestreams.Subscription
 import java.util.concurrent.TimeUnit
@@ -49,6 +49,8 @@ class RxJava3Activity : AppCompatActivity() {
       override fun onError(e: Throwable?) {
       }
     })*/
+
+    val rxjava3text: TextView = findViewById(R.id.rxjava3text)
 
     Observable.interval(0, 1, TimeUnit.SECONDS)
       .subscribeOn(Schedulers.single())

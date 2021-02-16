@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.text.Html
 import android.text.Html.FROM_HTML_MODE_LEGACY
 import android.view.ViewTreeObserver
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myprepare.R
-import kotlinx.android.synthetic.main.activity_view_size.*
 
 class ViewSizeActivity : AppCompatActivity() {
 
@@ -20,24 +21,27 @@ class ViewSizeActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_view_size)
 
+    val sizeText: TextView = findViewById(R.id.view_size_text)
 
-    view_size_text.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+    sizeText.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
       Html.fromHtml(t1, FROM_HTML_MODE_LEGACY)
     } else {
       Html.fromHtml(t1)
     }
 
 
-    view_size_text.post {
+    sizeText.post {
 //      Logger.d("text view width is ${view_size_text.width}, height is ${view_size_text.height}")
     }
 
-    val viewTreeObserver: ViewTreeObserver = view_size_button.viewTreeObserver
+    val sizeButton: Button = findViewById(R.id.view_size_button)
+
+    val viewTreeObserver: ViewTreeObserver = sizeButton.viewTreeObserver
     viewTreeObserver.addOnDrawListener(object : ViewTreeObserver.OnGlobalLayoutListener,
       ViewTreeObserver.OnDrawListener {
       override fun onGlobalLayout() {
 //        Logger.d("button width is ${view_size_button.width}, height is ${view_size_button.height}")
-        view_size_button.viewTreeObserver.removeOnGlobalLayoutListener(this)
+        sizeButton.viewTreeObserver.removeOnGlobalLayoutListener(this)
       }
 
       override fun onDraw() {
