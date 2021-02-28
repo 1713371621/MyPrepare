@@ -1,5 +1,6 @@
 package com.example.myprepare.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,7 @@ class IOActivity : AppCompatActivity() {
     private const val TAG = "IOActivity"
   }
 
+  @SuppressLint("MissingSuperCall")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_i_o)
