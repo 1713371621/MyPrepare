@@ -1,5 +1,6 @@
 package com.example.myprepare.view_test.vote_button
 
+import android.animation.AnimatorSet
 import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
@@ -40,54 +41,67 @@ class VoteButtonView @JvmOverloads constructor(
   private val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
   private val fontMetrics: Paint.FontMetrics = Paint.FontMetrics()
 
+  private val argbEvaluator = ArgbEvaluator()
+
+  private var showCountProgress: Float = 0f
+    set(value) {
+      field = value
+      invalidate()
+    }
+
+  private var showCountAlphaProgress: Float = 0f
+    set(value) {
+      field = value
+      invalidate()
+    }
+
+  private var countScrollerProgress: Float = 0f
+    set(value) {
+      field = value
+      invalidate()
+    }
+
+  private val animatorSet: AnimatorSet
+
   init {
     paint.getFontMetrics(fontMetrics)
+
+    val showCountAnimator: ValueAnimator by lazy {
+      ObjectAnimator.ofFloat(this, "showCountProgress", 0f, 1f).apply {
+        duration = 500
+        interpolator = PathInterpolatorCompat.create(0.25f, 0.46f, 0.45f, 0.94f)
+      }
+    }
+
+    val showCountAlphaAnimator: ValueAnimator by lazy {
+      ObjectAnimator.ofFloat(this, "showCountAlphaProgress", 0f, 1f).apply {
+        duration = 100
+      }
+    }
+
+    val countScrollerAnimator: ValueAnimator by lazy {
+      ObjectAnimator.ofFloat(this, "countScrollerProgress", 0f, 1f).apply {
+        duration = 200
+        startDelay = 1000
+        interpolator = PathInterpolatorCompat.create(0.645f, 0.045f, 0.355f, 1f)
+      }
+    }
+
+    animatorSet = AnimatorSet().apply {
+      playTogether(showCountAlphaAnimator, showCountAnimator, countScrollerAnimator)
+    }
   }
 
   private var title: String = ""
 
-  private var isUserSelected: Boolean = false
+  var isUserSelected: Boolean = false
+    private set
+
   private var isShowSelectedCount: Boolean = false
+  private var isReShowVoteAnimation: Boolean = false
 
   private var selectedNumber: Int = 0
   private var totalNumber: Int = 0
-
-  var showCountProgress: Float = 0f
-    set(value) {
-      field = value
-      invalidate()
-    }
-  private val showCountAnimator: ValueAnimator by lazy {
-    ObjectAnimator.ofFloat(this, "showCountProgress", 0f, 1f).apply {
-      duration = 500
-      interpolator = PathInterpolatorCompat.create(0.25f, 0.46f, 0.45f, 0.94f)
-    }
-  }
-
-  private val argbEvaluator = ArgbEvaluator()
-  var showCountAlphaProgress: Float = 0f
-    set(value) {
-      field = value
-      invalidate()
-    }
-  private val showCountAlphaAnimator: ValueAnimator by lazy {
-    ObjectAnimator.ofFloat(this, "showCountAlphaProgress", 0f, 1f).apply {
-      duration = 100
-    }
-  }
-
-  var countScrollerProgress: Float = 0f
-    set(value) {
-      field = value
-      invalidate()
-    }
-  private val countScrollerAnimator: ValueAnimator by lazy {
-    ObjectAnimator.ofFloat(this, "countScrollerProgress", 0f, 1f).apply {
-      duration = 200
-      startDelay = 500
-      interpolator = PathInterpolatorCompat.create(0.645f, 0.045f, 0.355f, 1f)
-    }
-  }
 
   private val backgroundPath: Path = Path()
   private val countPath: Path = Path()
@@ -103,7 +117,6 @@ class VoteButtonView @JvmOverloads constructor(
 
   private fun clearState() {
     isUserSelected = false
-    isShowSelectedCount = false
     ratio = 0f
     stopAnimation()
     showCountProgress = 0f
@@ -112,14 +125,8 @@ class VoteButtonView @JvmOverloads constructor(
   }
 
   private fun stopAnimation() {
-    if (showCountAnimator.isRunning) {
-      showCountAnimator.cancel()
-    }
-    if (showCountAlphaAnimator.isRunning) {
-      showCountAlphaAnimator.cancel()
-    }
-    if (countScrollerAnimator.isRunning) {
-      countScrollerAnimator.cancel()
+    if (animatorSet.isRunning) {
+      animatorSet.cancel()
     }
   }
 
@@ -132,12 +139,15 @@ class VoteButtonView @JvmOverloads constructor(
     this.isUserSelected = isUserSelected
     this.selectedNumber = selectedNumber
     this.totalNumber = totalNumber
-    this.isShowSelectedCount = true
+    if (isShowSelectedCount) {
+      isReShowVoteAnimation = true
+    } else {
+      isReShowVoteAnimation = false
+      isShowSelectedCount = true
+    }
     ratio = selectedNumber.toFloat() / totalNumber.toFloat()
     if (showAnimation) {
-      showCountAnimator.start()
-      showCountAlphaAnimator.start()
-      countScrollerAnimator.start()
+      animatorSet.start()
     } else {
       showCountProgress = 1f
       showCountAlphaProgress = 1f
@@ -207,7 +217,11 @@ class VoteButtonView @JvmOverloads constructor(
     paint.color = if (!isShowSelectedCount) {
       unselectedBackgroundColor
     } else {
-      argbEvaluator.evaluate(showCountAlphaProgress, unselectedBackgroundColor, selectedBackgroundColor) as Int
+      if (isReShowVoteAnimation) {
+        selectedBackgroundColor
+      } else {
+        argbEvaluator.evaluate(showCountAlphaProgress, unselectedBackgroundColor, selectedBackgroundColor) as Int
+      }
     }
 
     backgroundPath.addRoundRect(0f, 0f, width.toFloat(), height.toFloat(), backgroundRadius, backgroundRadius, Path.Direction.CCW)

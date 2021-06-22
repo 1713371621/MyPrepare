@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/darkblue"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:background="@color/darkblue"
     tools:context=".view_test.vote_button.VoteButtonTestActivity">
 
     <com.example.myprepare.view_test.vote_button.VoteButtonView
@@ -17,6 +17,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.example.myprepare.view_test.vote_button.VoteDanmakuView
+        android:id="@+id/voteDanmakuView"
+        android:layout_width="212dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/cadetblue"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/button1"
