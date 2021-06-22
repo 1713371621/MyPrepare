@@ -19,6 +19,7 @@ import com.example.myprepare.recyclerview.MyRecyclerViewAdapter
 import com.example.myprepare.view_test.*
 import com.example.myprepare.view_test.left_age.LeftAgeAnimationActivity
 import com.example.myprepare.view_test.scrollHintEditText.ScrollHintEditTextTestActivity
+import com.example.myprepare.view_test.vote_button.VoteButtonTestActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -117,7 +118,8 @@ class MainActivity : AppCompatActivity() {
     RouterDetail("SerializableTest", SerializableTestActivity::class.java),
     RouterDetail("LeftAgeAnimation", LeftAgeAnimationActivity::class.java),
     RouterDetail("JetPackTest", JetPackTestActivity::class.java),
-    RouterDetail("ScrollHintEditTextTest", ScrollHintEditTextTestActivity::class.java)
+    RouterDetail("ScrollHintEditTextTest", ScrollHintEditTextTestActivity::class.java),
+    RouterDetail("VoteButtonTest", VoteButtonTestActivity::class.java)
   )
 
   override fun onCreate(savedInstanceState: Bundle?) {

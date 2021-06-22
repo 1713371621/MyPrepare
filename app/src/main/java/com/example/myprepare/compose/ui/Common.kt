@@ -22,41 +22,41 @@ fun WeTopBar(title: String, onBack: (() -> Unit)? = null) {
       .background(MyPrepareTheme.colors.background)
       .fillMaxWidth()
   ) {
-    Row(
-      Modifier.preferredHeight(48.dp)
-    ) {
-      if (onBack != null) {
-        Icon(
-          painterResource(R.drawable.ic_back),
-          null,
-          Modifier
-            .clickable(onClick = onBack)
-            .align(Alignment.CenterVertically)
-            .size(36.dp)
-            .padding(8.dp),
-          tint = MyPrepareTheme.colors.icon
-        )
-      }
-      Spacer(Modifier.weight(1f))
-      val viewModel: ComposeViewModel = viewModel()
-      Icon(
-        painterResource(R.drawable.ic_palette),
-        "切换主题",
-        Modifier
-          .clickable(
-            onClick = {
-              viewModel.theme = when (viewModel.theme) {
-                MyPrepareTheme.Theme.Light -> MyPrepareTheme.Theme.Dark
-                MyPrepareTheme.Theme.Dark -> MyPrepareTheme.Theme.Light
-              }
-            }
-          )
-          .align(Alignment.CenterVertically)
-          .size(36.dp)
-          .padding(8.dp),
-        tint = MyPrepareTheme.colors.icon
-      )
-    }
+//    Row(
+//      Modifier.preferredHeight(48.dp)
+//    ) {
+//      if (onBack != null) {
+//        Icon(
+//          painterResource(R.drawable.ic_back),
+//          null,
+//          Modifier
+//            .clickable(onClick = onBack)
+//            .align(Alignment.CenterVertically)
+//            .size(36.dp)
+//            .padding(8.dp),
+//          tint = MyPrepareTheme.colors.icon
+//        )
+//      }
+//      Spacer(Modifier.weight(1f))
+//      val viewModel: ComposeViewModel = viewModel()
+//      Icon(
+//        painterResource(R.drawable.ic_palette),
+//        "切换主题",
+//        Modifier
+//          .clickable(
+//            onClick = {
+//              viewModel.theme = when (viewModel.theme) {
+//                MyPrepareTheme.Theme.Light -> MyPrepareTheme.Theme.Dark
+//                MyPrepareTheme.Theme.Dark -> MyPrepareTheme.Theme.Light
+//              }
+//            }
+//          )
+//          .align(Alignment.CenterVertically)
+//          .size(36.dp)
+//          .padding(8.dp),
+//        tint = MyPrepareTheme.colors.icon
+//      )
+//    }
     Text(title, Modifier.align(Alignment.Center), color = MyPrepareTheme.colors.textPrimary)
   }
 }

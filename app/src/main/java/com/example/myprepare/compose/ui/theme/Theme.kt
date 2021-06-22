@@ -150,12 +150,12 @@ fun MyPrepareTheme(
     badge = badge.value,
   )
 
-  Providers(LocalMyPrepareColors provides colors) {
-    MaterialTheme(
-      typography = typography,
-      shapes = shapes,
-      content = content
-    )
-  }
+//  Providers(LocalMyPrepareColors provides colors) {
+//    MaterialTheme(
+//      typography = typography,
+//      shapes = shapes,
+//      content = content
+//    )
+//  }
 
 }

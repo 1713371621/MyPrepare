@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view_test.vote_button.VoteButtonTestActivity"
+            android:exported="true" />
+        <activity
             android:name=".view_test.scrollHintEditText.ScrollHintEditTextTestActivity"
             android:exported="true" />
         <activity
